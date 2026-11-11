@@ -1,4 +1,4 @@
-/* Ghost's embedded apps: Portal (members) and Sodo Search
+/* Ghost's embedded apps: Portal (members), Sodo Search and comments
    Both render inside iframes whose documents are light. When the page is
    dark, the iframe element inherits color-scheme: dark, and browsers paint an
    opaque white backdrop behind any iframe whose color scheme doesn't match
@@ -7,6 +7,16 @@
 /* ---------------------------------------------------------- */
 
 #ghost-portal-root iframe,
-#sodo-search-root iframe {
+#sodo-search-root iframe,
+.gh-post-comments iframe {
     color-scheme: light;
+}
+
+/* Ghost comments
+   In auto mode the comments app picks light or dark by reading its
+   container's computed text color, and it only parses rgb() values. The
+   theme's oklch colors fail that check, so it always chose light mode. The
+   container gets the same text colors written as rgb() (gray-900 / gray-50). */
+.gh-post-comments {
+    color: light-dark(rgb(23 23 23), rgb(250 250 250));
 }
