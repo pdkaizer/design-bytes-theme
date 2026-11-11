@@ -44,9 +44,13 @@
         color-mix(in oklch, var(--accent-on-dark) 35%, transparent)
     );
 
-    /* Type: Ghost admin's font picker wins when set. */
-    --font-body: var(--gh-font-body, var(--font-stack-sans));
-    --font-heading: var(--gh-font-heading, var(--font-stack-sans));
+    /* Type: IBM Plex Serif headings, Inter body. Ghost admin's font picker
+       wins when set; Ghost injects a bare family name, so the stack is
+       repeated after it as a fallback. */
+    --font-body: var(--gh-font-body, var(--font-stack-sans)), var(--font-stack-sans);
+    --font-heading: var(--gh-font-heading, var(--font-stack-serif)), var(--font-stack-serif);
+    --heading-weight: var(--weight-semibold);
+    --heading-tracking: -0.012em;
     --font-mono: var(--font-stack-mono);
 
     /* Layout */

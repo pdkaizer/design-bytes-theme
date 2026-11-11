@@ -24,7 +24,7 @@
     padding-inline: var(--space-8);
     color: var(--color-text-muted);
     font-size: var(--step-2);
-    font-weight: var(--weight-light);
+    font-weight: var(--weight-regular);
     line-height: var(--leading-tight);
 }
 
