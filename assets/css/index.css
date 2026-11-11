@@ -32,5 +32,6 @@ Later layers beat earlier ones regardless of specificity.
 @import "components/theme-toggle.css" layer(components);
 
 @import "ghost/content.css" layer(ghost);
+@import "ghost/embeds.css" layer(ghost);
 
 @import "utilities.css" layer(utilities);

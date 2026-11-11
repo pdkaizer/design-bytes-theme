@@ -5,8 +5,8 @@
 
 :root {
     /* Brand: one hue drives the whole ramp.
-       TODO: 265 is a placeholder. Replace with Design Bytes' brand hue. */
-    --brand-hue: 265;
+       18 matches the Design Bytes accent, #342828 = oklch(29% 0.018 18). */
+    --brand-hue: 18;
 
     --brand-100: oklch(95% 0.03 var(--brand-hue));
     --brand-300: oklch(80% 0.09 var(--brand-hue));

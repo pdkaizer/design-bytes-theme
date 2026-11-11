@@ -11,7 +11,7 @@
         inline-size: auto;
     }
 
-    & a {
+    & a:not(.gh-button) {
         color: inherit;
     }
 }
