@@ -14,7 +14,9 @@
     line-height: var(--leading-snug);
     background: inherit;
 
-    & a {
+    /* Buttons excluded: this selector outranks .gh-button and would
+       override its text color. */
+    & a:not(.gh-button) {
         color: inherit;
         text-decoration: none;
     }

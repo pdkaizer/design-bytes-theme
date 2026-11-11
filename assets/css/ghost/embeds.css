@@ -1,0 +1,12 @@
+/* Ghost's embedded apps: Portal (members) and Sodo Search
+   Both render inside iframes whose documents are light. When the page is
+   dark, the iframe element inherits color-scheme: dark, and browsers paint an
+   opaque white backdrop behind any iframe whose color scheme doesn't match
+   its document. Pinning these frames to light keeps them transparent, so
+   Portal's floating Subscribe button no longer sits in a white box.
+/* ---------------------------------------------------------- */
+
+#ghost-portal-root iframe,
+#sodo-search-root iframe {
+    color-scheme: light;
+}
