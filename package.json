@@ -83,6 +83,23 @@
             "xl": {
                 "width": 2000
             }
+        },
+        "custom": {
+            "publisher_name": {
+                "type": "text",
+                "default": "",
+                "description": "Shown in the footer as \"A [name] Publication\". Leave empty to hide."
+            },
+            "publisher_url": {
+                "type": "text",
+                "default": "",
+                "description": "Optional link for the publisher name."
+            },
+            "footer_disclaimer": {
+                "type": "text",
+                "default": "",
+                "description": "Plain text shown under the footer menu, such as a disclaimer."
+            }
         }
     },
     "type": "module"

@@ -1,0 +1,23 @@
+{{!--
+Site footer. The secondary navigation holds links only; plain-text lines come
+from theme settings (Settings → Design → Theme in Ghost admin), so they never
+render as links.
+--}}
+<footer class="gh-foot">
+    <div class="gh-container">
+        <div class="gh-foot-menu">
+            {{navigation type="secondary"}}
+        </div>
+        <div class="gh-foot-meta">
+            {{#if @custom.publisher_name}}
+                <p class="gh-foot-publisher">
+                    A {{#if @custom.publisher_url}}<a href="{{@custom.publisher_url}}">{{@custom.publisher_name}}</a>{{else}}{{@custom.publisher_name}}{{/if}} Publication
+                </p>
+            {{/if}}
+            {{#if @custom.footer_disclaimer}}
+                <p class="gh-foot-disclaimer">{{@custom.footer_disclaimer}}</p>
+            {{/if}}
+            <p class="gh-foot-credit">Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a></p>
+        </div>
+    </div>
+</footer>
