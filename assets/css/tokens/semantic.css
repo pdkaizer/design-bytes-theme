@@ -1,0 +1,56 @@
+/* Semantic tokens
+   "What is this for?" The only tier components may reference.
+   Mirrors the Figma *Theme* collection: the two arguments of light-dark()
+   are its Light and Dark modes.
+/* ---------------------------------------------------------- */
+
+:root {
+    /* Follow the OS by default; data-theme on <html> forces a mode. */
+    color-scheme: light dark;
+
+    &[data-theme="light"] { color-scheme: light; }
+    &[data-theme="dark"] { color-scheme: dark; }
+
+    /* Color */
+    --color-bg: light-dark(var(--gray-0), var(--gray-950));
+    --color-surface: light-dark(var(--gray-50), var(--gray-900));
+    --color-surface-strong: light-dark(var(--gray-100), var(--gray-800));
+    --color-border: light-dark(var(--gray-200), var(--gray-800));
+    --color-text: light-dark(var(--gray-900), var(--gray-50));
+    --color-text-muted: light-dark(var(--gray-600), var(--gray-400));
+
+    /* Ghost admin's accent color wins when set. */
+    --color-accent: var(--ghost-accent-color, var(--brand-500));
+    --color-accent-text: var(--gray-0);
+    --color-accent-hover: color-mix(in oklch, var(--color-accent), black 15%);
+    /* Accent as text: lifted in dark mode so it stays readable on dark backgrounds. */
+    --color-link: light-dark(var(--color-accent), color-mix(in oklch, var(--color-accent), white 40%));
+
+    --color-success: var(--green-500);
+    --color-success-text: var(--gray-0);
+    --color-danger: light-dark(var(--red-600), var(--red-300));
+    --color-code: light-dark(var(--pink-600), var(--pink-300));
+    --color-highlight: light-dark(var(--yellow-100), var(--yellow-900));
+    --color-selection: color-mix(in oklch, var(--color-accent) 25%, transparent);
+
+    /* Type: Ghost admin's font picker wins when set. */
+    --font-body: var(--gh-font-body, var(--font-stack-sans));
+    --font-heading: var(--gh-font-heading, var(--font-stack-sans));
+    --font-mono: var(--font-stack-mono);
+
+    /* Layout */
+    --measure: 68ch;
+    --content-wide: 75rem;
+    --gutter: clamp(var(--space-4), 4vw, var(--space-12));
+    --section-space: clamp(var(--space-10), 8vmin, var(--space-20));
+    --flow-space: var(--space-6);
+
+    /* Controls */
+    --control-height: 2.5rem;
+    --radius-control: var(--radius-md);
+    --focus-ring: 2px solid var(--color-accent);
+    --focus-offset: 2px;
+
+    /* Motion */
+    --transition-base: var(--duration-base) var(--ease-out);
+}

@@ -1,0 +1,76 @@
+/* Reset
+   Neutralize browser defaults.
+/* ---------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, li, dl, dd,
+pre, form, table, figure, figcaption, blockquote, fieldset {
+    margin: 0;
+}
+
+ul[class],
+ol[class] {
+    padding: 0;
+    list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-inline-size: 100%;
+}
+
+img {
+    block-size: auto;
+}
+
+input,
+button,
+select,
+textarea {
+    font: inherit;
+}
+
+:where(input:not([type="checkbox"], [type="radio"]), button, select, textarea) {
+    appearance: none;
+}
+
+fieldset {
+    padding: 0;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        interpolate-size: allow-keywords;
+    }
+}
+
+/* Important declarations in the first layer outrank every later layer,
+   so this beats all component transitions. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

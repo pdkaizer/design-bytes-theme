@@ -1,0 +1,24 @@
+/* "Published with Ghost" badge
+/* ---------------------------------------------------------- */
+
+a.gh-powered {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 1px var(--color-border);
+    font-family: var(--font-body);
+    font-size: var(--step--2);
+    font-weight: var(--weight-semibold);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+
+    & svg {
+        inline-size: 1rem;
+        block-size: 1rem;
+    }
+}

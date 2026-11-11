@@ -1,0 +1,95 @@
+# Posts repository activity to the "Design Bytes Custom Theme" Basecamp project Chat.
+# Requires the repo secret BASECAMP_CHATBOT_URL: the "lines" URL of a Basecamp chatbot
+# (Chat → ••• → Configure chatbots). Without it, the job skips with a notice.
+name: Basecamp Activity
+
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+  pull_request:
+    types: [opened, reopened, closed, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+  issues:
+    types: [opened, reopened, closed]
+  issue_comment:
+    types: [created]
+  release:
+    types: [published]
+  workflow_run:
+    workflows: [Deploy Theme]
+    types: [completed]
+
+permissions: {}
+
+jobs:
+  notify:
+    name: Post to Basecamp
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    steps:
+      - name: Post activity line
+        env:
+          BASECAMP_CHATBOT_URL: ${{ secrets.BASECAMP_CHATBOT_URL }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$BASECAMP_CHATBOT_URL" ]; then
+            echo "::notice::BASECAMP_CHATBOT_URL is not set; skipping."
+            exit 0
+          fi
+
+          # For deploy runs, report the Deploy job's own result: the workflow
+          # succeeds even when that job is skipped for missing secrets.
+          deploy=""
+          if [ "$GITHUB_EVENT_NAME" = "workflow_run" ]; then
+            jobs_url=$(jq -r '.workflow_run.jobs_url' "$GITHUB_EVENT_PATH")
+            deploy=$(gh api "$jobs_url" --jq '.jobs[] | select(.name == "Deploy") | .conclusion' 2>/dev/null || true)
+          fi
+
+          # Every value comes from the event payload via jq and is HTML-escaped,
+          # so commit messages and titles can't inject markup or shell.
+          content=$(jq -r --arg ev "$GITHUB_EVENT_NAME" --arg deploy "$deploy" '
+            def esc: tostring | @html;
+            def link(u; t): "<a href=\"" + (u | esc) + "\">" + (t | esc) + "</a>";
+            def who: "<strong>" + (.sender.login | esc) + "</strong>";
+            def repo: link(.repository.html_url; .repository.name);
+
+            if $ev == "push" then
+              (.ref | sub("^refs/(heads|tags)/"; "")) as $ref
+              | if .deleted then who + " deleted " + ($ref | esc) + " in " + repo
+                elif (.ref | startswith("refs/tags/")) then who + " pushed tag " + ($ref | esc) + " to " + repo
+                else who + " pushed " + (.commits | length | tostring) + " commit(s) to "
+                  + link(.compare; $ref) + " in " + repo
+                  + ([.commits[] | "<br>• " + link(.url; .id[0:7]) + " " + (.message | split("\n")[0] | esc)] | join(""))
+                end
+            elif $ev == "pull_request" then
+              (if .action == "closed" and .pull_request.merged then "merged"
+               elif .action == "ready_for_review" then "marked ready for review"
+               else .action end) as $a
+              | who + " " + $a + " pull request " + link(.pull_request.html_url; "#\(.number) \(.pull_request.title)")
+            elif $ev == "pull_request_review" then
+              who + " " + (.review.state | ascii_downcase | gsub("_"; " ")) + " "
+              + link(.review.html_url; "#\(.pull_request.number) \(.pull_request.title)")
+            elif $ev == "issues" then
+              who + " " + .action + " issue " + link(.issue.html_url; "#\(.issue.number) \(.issue.title)")
+            elif $ev == "issue_comment" then
+              who + " commented on " + link(.comment.html_url; "#\(.issue.number) \(.issue.title)")
+            elif $ev == "release" then
+              who + " published release " + link(.release.html_url; (.release.name // .release.tag_name))
+            elif $ev == "workflow_run" then
+              (if $deploy == "skipped" then "skipped (Ghost Pro secrets not set)"
+               elif $deploy != "" then $deploy
+               else (.workflow_run.conclusion // "finished") end) as $result
+              | "Theme deploy " + ($result | esc) + " for "
+              + link(.workflow_run.html_url; .workflow_run.head_branch + " @ " + .workflow_run.head_sha[0:7])
+            else
+              who + " triggered " + ($ev | esc) + " in " + repo
+            end
+          ' "$GITHUB_EVENT_PATH")
+
+          jq -n --arg content "$content" '{content: $content}' \
+            | curl -fsS -X POST -H "Content-Type: application/json" --data @- "$BASECAMP_CHATBOT_URL" \
+            > /dev/null
+          echo "Posted: $content"

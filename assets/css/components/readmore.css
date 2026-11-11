@@ -1,0 +1,39 @@
+/* Read more: next / previous post links
+/* ---------------------------------------------------------- */
+
+.gh-readmore {
+    padding: var(--section-space) var(--gutter);
+    font-size: var(--step-2);
+
+    & a {
+        display: flex;
+        gap: var(--space-4);
+        color: currentColor;
+        text-decoration: none;
+    }
+
+    & h4 {
+        inline-size: 100%;
+        font-size: inherit;
+    }
+
+    & svg {
+        flex: none;
+        block-size: 1em;
+        margin-block-start: 0.15em;
+    }
+}
+
+.gh-readmore-inner {
+    display: grid;
+    gap: var(--space-10);
+    grid-template-columns: 1fr 1fr;
+}
+
+.gh-readmore-prev {
+    text-align: end;
+
+    & a {
+        justify-content: flex-end;
+    }
+}

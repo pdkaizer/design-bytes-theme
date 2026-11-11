@@ -1,0 +1,93 @@
+/* Primitive tokens
+   "What values exist?" Feed the semantic tier only; components never
+   reference these directly. Names mirror the Figma *Primitives* collection.
+/* ---------------------------------------------------------- */
+
+:root {
+    /* Brand: one hue drives the whole ramp.
+       TODO: 265 is a placeholder. Replace with Design Bytes' brand hue. */
+    --brand-hue: 265;
+
+    --brand-100: oklch(95% 0.03 var(--brand-hue));
+    --brand-300: oklch(80% 0.09 var(--brand-hue));
+    --brand-500: oklch(55% 0.18 var(--brand-hue));
+    --brand-700: oklch(42% 0.15 var(--brand-hue));
+    --brand-900: oklch(28% 0.09 var(--brand-hue));
+
+    /* Neutral ramp */
+    --gray-0: oklch(100% 0 0);
+    --gray-50: oklch(98.5% 0 0);
+    --gray-100: oklch(96.5% 0 0);
+    --gray-200: oklch(92% 0 0);
+    --gray-300: oklch(87% 0 0);
+    --gray-400: oklch(71% 0 0);
+    --gray-500: oklch(56% 0 0);
+    --gray-600: oklch(44% 0 0);
+    --gray-700: oklch(37% 0 0);
+    --gray-800: oklch(27% 0 0);
+    --gray-900: oklch(20.5% 0 0);
+    --gray-950: oklch(14.5% 0 0);
+
+    /* Status hues */
+    --green-500: oklch(64% 0.17 135);
+    --green-300: oklch(80% 0.15 135);
+    --red-600: oklch(58% 0.21 30);
+    --red-300: oklch(75% 0.14 30);
+    --pink-600: oklch(53% 0.22 5);
+    --pink-300: oklch(78% 0.13 5);
+    --yellow-100: oklch(97% 0.08 105);
+    --yellow-900: oklch(40% 0.08 95);
+
+    /* Space: 4px base, named by step */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+
+    /* Fluid type scale: 360px → 1280px viewports.
+       Min: 16px base, ratio 1.2. Max: 18px base, ratio 1.25. */
+    --step--2: clamp(0.6944rem, 0.6844rem + 0.0446vw, 0.72rem);
+    --step--1: clamp(0.8333rem, 0.8072rem + 0.116vw, 0.9rem);
+    --step-0: clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem);
+    --step-1: clamp(1.2rem, 1.1193rem + 0.3587vw, 1.4063rem);
+    --step-2: clamp(1.44rem, 1.3157rem + 0.5527vw, 1.7578rem);
+    --step-3: clamp(1.728rem, 1.5444rem + 0.8161vw, 2.1973rem);
+    --step-4: clamp(2.0736rem, 1.8103rem + 1.1704vw, 2.7466rem);
+    --step-5: clamp(2.4883rem, 2.1186rem + 1.6434vw, 3.4332rem);
+
+    /* Font stacks */
+    --font-stack-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    --font-stack-serif: Georgia, Times, serif;
+    --font-stack-mono: ui-monospace, Menlo, Consolas, monospace;
+
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    --leading-tight: 1.15;
+    --leading-snug: 1.3;
+    --leading-normal: 1.6;
+
+    /* Shape */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-full: 9999px;
+
+    /* Motion */
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+    --ease-out: cubic-bezier(0.2, 0.7, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}

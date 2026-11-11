@@ -1,68 +1,77 @@
-/* Buttons
+/* Button
+   Outlined by default; .gh-button-primary fills with the accent.
+   Variants and states change tokens, never properties.
 /* ---------------------------------------------------------- */
 
 .gh-button {
-    display: inline-block;
-    min-width: 75px;
-    height: var(--height);
-    padding: 0 2rem;
+    --button-bg: transparent;
+    --button-text: currentColor;
+    --button-border: currentColor;
+    --button-height: var(--control-height);
+    --button-padding: var(--space-5);
+    --button-font-size: var(--step--1);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-inline-size: 4.5rem;
+    block-size: var(--button-height);
+    padding-inline: var(--button-padding);
     border: 0;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-family: var(--font-sans-serif);
-    font-size: 1.4rem;
-    font-weight: var(--font-normal);
-    line-height: var(--height);
+    border-radius: var(--radius-control);
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    box-shadow: inset 0 0 0 2px var(--button-border);
+    font-family: var(--font-body);
+    font-size: var(--button-font-size);
+    font-weight: var(--weight-semibold);
+    line-height: 1;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    appearance: none;
-    transition: 0.4s ease;
-}
+    cursor: pointer;
+    transition:
+        color var(--transition-base),
+        background-color var(--transition-base),
+        box-shadow var(--transition-base);
 
-.gh-button.gh-button-fit {
-    width: 100%;
-}
+    &:hover {
+        --button-text: var(--color-link);
+        --button-border: var(--color-link);
+    }
 
-.gh-button.gh-button-small {
-    height: calc(var(--height) * 0.9);
-    line-height: calc(var(--height) * 0.9);
-    padding: 0 1.5rem;
-    font-size: 1.2rem;
-}
+    &.gh-button-primary {
+        --button-bg: var(--color-accent);
+        --button-text: var(--color-accent-text);
+        --button-border: transparent;
 
-.gh-button.gh-button-large {
-    height: calc(var(--height) * 1.2);
-    line-height: calc(var(--height) * 1.2);
-    padding: 0 2.5rem;
-    font-size: 1.7rem;
-}
+        &:hover {
+            --button-bg: var(--color-accent-hover);
+            --button-text: var(--color-accent-text);
+            --button-border: transparent;
+        }
+    }
 
-.gh-button.gh-button-disabled,
-.gh-button:disabled {
-    pointer-events: none;
-    opacity: 0.4;
-}
+    &.gh-button-small {
+        --button-height: calc(var(--control-height) * 0.85);
+        --button-padding: var(--space-4);
+        --button-font-size: var(--step--2);
+    }
 
-.gh-button {
-    color: inherit;
-    background-color: transparent;
-    box-shadow: inset 0 0 0 2px currentColor
-}
+    &.gh-button-large {
+        --button-height: calc(var(--control-height) * 1.2);
+        --button-padding: var(--space-6);
+        --button-font-size: var(--step-0);
+    }
 
-.gh-button:hover {
-    text-decoration: none;
-    color: var(--color-primary) !important;
-    box-shadow: inset 0 0 0 2px var(--color-primary);
-    transition: 0.2s ease;
-}
+    &.gh-button-fit {
+        inline-size: 100%;
+    }
 
-.gh-button.gh-button-primary {
-    color: #fff !important;
-    background-color: var(--color-primary);
-    box-shadow: none;
-}
-
-.gh-button.gh-button-primary:hover {
-    background-color: var(--color-primary);
+    &:disabled,
+    &.gh-button-disabled {
+        pointer-events: none;
+        opacity: 0.4;
+    }
 }

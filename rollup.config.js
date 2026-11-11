@@ -13,8 +13,6 @@ import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 // Use @import to include other CSS files
 import atImport from 'postcss-import';
-// Use the latest CSS features in your Rollup bundle
-import postcssPresetEnv from 'postcss-preset-env';
 
 // Development: Enables a livereload server that watches for changes to CSS, JS, and Handlbars files
 import { resolve } from "path";
@@ -37,10 +35,12 @@ export default defineConfig({
             extract: true,
             sourceMap: true,
             plugins: [
-                atImport(),
-                postcssPresetEnv({})
-            ], 
-            minimize: true,
+                // Bundling only: modern CSS (layers, nesting, light-dark) ships as written.
+                atImport()
+            ],
+            // cssnano 5's mergeRules flattens native nested rules into plain
+            // declarations when it merges same-selector rules, so it stays off.
+            minimize: { preset: ['default', { mergeRules: false }] },
         }),
         process.env.BUILD !== "production" && livereload({
             watch: resolve('.'),

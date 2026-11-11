@@ -1,0 +1,102 @@
+/* Post card
+   Responds to its slot, not the viewport: the same markup works in the
+   feed, the featured row, or a sidebar. The whole card is clickable via a
+   stretched ::after on the title link, so the link's accessible name is
+   just the title.
+/* ---------------------------------------------------------- */
+
+.gh-card {
+    --card-gap: var(--space-4);
+    --card-title-size: var(--step-2);
+    --card-image-ratio: 16 / 9;
+    --card-image-radius: var(--radius-md);
+
+    position: relative;
+    container-type: inline-size;
+
+    /* Whole-card focus ring, driven by the one real link. Hover needs no
+       :has(): the stretched ::after means hovering the card hovers the link. */
+    &:has(.gh-card-link:focus-visible) {
+        outline: var(--focus-ring);
+        outline-offset: var(--space-2);
+        border-radius: var(--card-image-radius);
+    }
+}
+
+.gh-card-inner {
+    display: grid;
+    gap: var(--card-gap);
+}
+
+.gh-card-image {
+    inline-size: 100%;
+    aspect-ratio: var(--card-image-ratio);
+    object-fit: cover;
+    border-radius: var(--card-image-radius);
+}
+
+.gh-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.gh-card-meta {
+    color: var(--color-text-muted);
+    font-size: var(--step--1);
+    line-height: var(--leading-snug);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.gh-card-title {
+    font-size: var(--card-title-size);
+}
+
+.gh-card-link {
+    &:hover {
+        color: var(--color-link);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.gh-card-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    color: var(--color-text-muted);
+}
+
+.gh-card-more {
+    align-self: start;
+    padding-block: 1px;
+    font-weight: var(--weight-medium);
+    box-shadow: inset 0 -1px 0 0 currentColor;
+}
+
+/* Wide slot: larger title; image and text side by side when there is an
+   image. A container query can't style its own container, so the tokens
+   are overridden one level down on .gh-card-inner. */
+@container (width > 40rem) {
+    .gh-card-inner {
+        --card-gap: var(--space-10);
+        --card-title-size: var(--step-4);
+        --card-image-ratio: 3 / 2;
+
+        &:has(.gh-card-picture) {
+            grid-template-columns: 3fr 2fr;
+            align-items: center;
+        }
+    }
+}
