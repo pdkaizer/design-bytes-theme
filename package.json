@@ -1,7 +1,7 @@
 {
-    "name": "ghost-starter-theme",
-    "description": "A starter theme for Ghost theme development",
-    "demo": "https://starter.ghost.io",
+    "name": "design-bytes-theme",
+    "description": "Custom Ghost theme for Design Bytes (design-bytes.com)",
+    "demo": "https://design-bytes.com",
     "version": "1.0.0",
     "engines": {
         "ghost": ">=5.0.0"
@@ -13,7 +13,7 @@
     "scripts": {
         "dev": "rollup -c --environment BUILD:development -w",
         "build": "rollup -c --environment BUILD:production",
-        "zip": "pnpm build && bestzip $npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
+        "zip": "pnpm build && bestzip $npm_package_name.zip assets/* partials/* *.hbs package.json",
         "test": "gscan .",
         "pretest": "pnpm zip",
         "test:ci": "gscan --fatal --verbose .",
@@ -21,16 +21,9 @@
     },
     "packageManager": "pnpm@12.18.0",
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
-    },
-    "gpm": {
-        "type": "theme",
-        "categories": [
-            "Minimal",
-            "Magazine"
-        ]
+        "name": "Peter Kaizer",
+        "email": "desk@design-bytes.com",
+        "url": "https://peterkaizer.com"
     },
     "keywords": [
         "ghost",
@@ -39,10 +32,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Starter.git"
+        "url": "https://github.com/pdkaizer/design-bytes-theme.git"
     },
-    "bugs": "https://github.com/TryGhost/Starter/issues",
-    "contributors": "https://github.com/TryGhost/Starter/graphs/contributors",
+    "bugs": "https://github.com/pdkaizer/design-bytes-theme/issues",
     "devDependencies": {
         "@babel/core": "8.1.0",
         "@babel/preset-env": "8.0.7",
