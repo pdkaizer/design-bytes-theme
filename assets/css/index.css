@@ -13,6 +13,7 @@ Later layers beat earlier ones regardless of specificity.
 @import "tokens/primitives.css" layer(tokens);
 @import "tokens/semantic.css" layer(tokens);
 
+@import "fonts.css" layer(base);
 @import "base.css" layer(base);
 
 @import "layout.css" layer(layout);

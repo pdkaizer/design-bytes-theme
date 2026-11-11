@@ -5,7 +5,7 @@ The custom [Ghost](https://ghost.org) theme for [Design Bytes](https://design-by
 ## Features
 
 - **Light and dark modes.** The theme follows the reader's system setting, and a header toggle lets them choose. Their choice is remembered.
-- **Typography:** IBM Plex Serif headings and Inter body copy on a fluid 16px type scale.
+- **Typography:** IBM Plex Serif headings and Inter body copy on a fluid 16px type scale. Ghost's font service provides the upright styles; the theme bundles true italics (`assets/fonts/`, SIL Open Font License).
 - **Plain modern CSS:** cascade layers, design tokens, native nesting and container queries, with no framework. See [design-bytes-css-architecture.md](design-bytes-css-architecture.md).
 - **Ghost admin settings respected:** the accent colour and fonts set in admin flow through the theme's tokens.
 - **Theme settings** for the footer's publisher line and disclaimer.

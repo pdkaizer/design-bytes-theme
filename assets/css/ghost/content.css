@@ -102,8 +102,8 @@
         padding-inline-start: 1.9em;
     }
 
-    /* Upright serif: Ghost loads no italics, so an italic quote would be
-       a browser-faked slant. */
+    /* Upright serif quotes; true italics (fonts.css) now render any
+       emphasis inside them. */
     & blockquote {
         padding-inline-start: var(--space-5);
         border-inline-start: 0.1875rem solid var(--color-accent);

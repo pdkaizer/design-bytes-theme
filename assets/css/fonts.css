@@ -1,0 +1,46 @@
+/* Bundled italics
+   Ghost's font service loads IBM Plex Serif and Inter in weights 400–600
+   but no italics, so <em> and italic quotes got a browser-faked slant.
+   These faces share Ghost's family names, so the browser merges them with
+   the upright faces Ghost loads and picks them for italic text only.
+
+   Only selected fonts are affected: the fallback stacks in
+   tokens/primitives.css deliberately don't name Inter or IBM Plex Serif,
+   so these italic-only faces are never used for upright text when the
+   fonts aren't selected in Ghost admin.
+
+   Latin subset, from Fontsource 5.3.0 (SIL Open Font License, see
+   assets/fonts/). Paths are relative to assets/built/index.css.
+/* ---------------------------------------------------------- */
+
+@font-face {
+    font-family: "IBM Plex Serif";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/ibm-plex-serif-latin-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "IBM Plex Serif";
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/ibm-plex-serif-latin-600-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/inter-latin-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/inter-latin-600-italic.woff2") format("woff2");
+}
