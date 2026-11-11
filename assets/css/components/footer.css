@@ -13,6 +13,7 @@
 
     & a:not(.gh-button) {
         color: inherit;
+        text-decoration: none;
     }
 }
 
@@ -29,7 +30,9 @@
         gap: var(--space-2) var(--space-4);
         padding: 0;
         list-style: none;
-        font-size: var(--step-1);
+        /* Same size and leading as the header menu. */
+        font-size: var(--step-0);
+        line-height: var(--leading-snug);
     }
 
     & .nav li {
@@ -39,13 +42,31 @@
     & .nav a {
         display: inline-block;
         padding-block: var(--space-1);
-        box-shadow: inset 0 -1px 0 0 currentColor;
     }
 }
 
+/* Small print: publisher line, disclaimer (both from theme settings) and
+   the Ghost credit. */
 .gh-foot-meta {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-2);
     margin-block: var(--space-8);
     text-align: center;
     color: var(--color-text-muted);
     font-size: var(--step--1);
+    line-height: var(--leading-snug);
+
+    & p {
+        max-inline-size: var(--measure);
+        text-wrap: pretty;
+    }
+
+    & a:hover {
+        color: var(--color-link);
+    }
+}
+
+.gh-foot-publisher a {
+    color: var(--color-text);
 }
