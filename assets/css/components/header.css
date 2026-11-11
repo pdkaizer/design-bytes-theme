@@ -254,7 +254,7 @@ body:not(.gh-head-open) .gh-burger:hover {
             text-align: center;
             font-family: var(--font-heading);
             font-size: var(--step-4);
-            font-weight: var(--weight-light);
+            font-weight: var(--weight-regular);
             line-height: var(--leading-tight);
 
             & .nav {
