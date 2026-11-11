@@ -1,0 +1,30 @@
+{{!< default}}
+{{!--
+Bytes section: every post tagged "byte", routed at /bytes/ by routes.yaml
+(channel with data: tag.byte). A compact, text-led list: Bytes are short
+curated pieces, so the title and excerpt lead and the image is a thumbnail.
+--}}
+
+<div class="gh-page">
+    <div class="gh-container">
+
+        <header class="gh-page-head">
+            <h1>Bytes</h1>
+            {{#tag}}
+                {{#if description}}<p>{{description}}</p>{{/if}}
+            {{/tag}}
+        </header>
+
+        {{!-- .gh-postfeed is the infinite scroll hook; .is-list makes it a single column. --}}
+        <div class="gh-postfeed is-list">
+        {{#foreach posts}}
+            {{> "card-byte"}}
+        {{/foreach}}
+        </div>
+
+        <noscript>
+            <div class="gh-pagination">{{pagination}}</div>
+        </noscript>
+
+    </div>
+</div>

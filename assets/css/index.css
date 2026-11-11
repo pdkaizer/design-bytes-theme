@@ -22,6 +22,7 @@ Later layers beat earlier ones regardless of specificity.
 @import "components/header.css" layer(components);
 @import "components/footer.css" layer(components);
 @import "components/card.css" layer(components);
+@import "components/byte-card.css" layer(components);
 @import "components/page-head.css" layer(components);
 @import "components/post.css" layer(components);
 @import "components/readmore.css" layer(components);

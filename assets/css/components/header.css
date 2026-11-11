@@ -9,6 +9,10 @@
     --head-gap: var(--space-10);
     --head-logo-size: var(--step-1);
     --head-logo-max: 2.5rem;
+    /* Space between menu items: 16px when the header is tight, up to 32px
+       on wide screens. */
+    --head-nav-gap: clamp(var(--space-4), 2.2vw, var(--space-8));
+    --head-overlay-bg: var(--color-bg);
 
     padding: var(--space-6) var(--gutter);
     font-size: var(--step-0);
@@ -64,7 +68,7 @@
         display: inline-flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: var(--space-1) var(--space-4);
+        gap: var(--space-1) var(--head-nav-gap);
         list-style: none;
         padding: 0;
     }
@@ -216,9 +220,11 @@ body:not(.gh-head-open) .gh-burger:hover {
 }
 
 /* Mobile menu
-   Selectors match the variants' specificity and come later, so they win. */
+   Below 66rem (1056px) the full menu no longer fits on one line, so the
+   burger takes over. Selectors match the variants' specificity and come
+   later, so they win. */
 
-@media (width < 56.25rem) {
+@media (width < 66rem) {
     .gh-burger {
         display: inline-block;
     }
@@ -276,11 +282,16 @@ body:not(.gh-head-open) .gh-burger:hover {
         overflow: hidden;
         block-size: 100dvh;
 
+        /* Full-screen overlay in the page colour, so the menu is readable
+           and the page (including Ghost's announcement bar, z-index 90)
+           is hidden behind it. */
         & .gh-head {
             position: fixed;
             inset: 0;
             z-index: 900;
             overflow-y: auto;
+            overscroll-behavior: contain;
+            background: var(--head-overlay-bg);
 
             & .gh-head-inner {
                 grid-template-rows: auto 1fr auto;

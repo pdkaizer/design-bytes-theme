@@ -1,0 +1,28 @@
+{{!< default}}
+{{!--
+Articles section: every post tagged "article", routed at /articles/ by
+routes.yaml (channel with data: tag.article). Image-led card grid.
+--}}
+
+<div class="gh-page">
+    <div class="gh-container">
+
+        <header class="gh-page-head">
+            <h1>Articles</h1>
+            {{#tag}}
+                {{#if description}}<p>{{description}}</p>{{/if}}
+            {{/tag}}
+        </header>
+
+        <div class="gh-postfeed">
+        {{#foreach posts}}
+            {{> "card" page=../pagination.page}}
+        {{/foreach}}
+        </div>
+
+        <noscript>
+            <div class="gh-pagination">{{pagination}}</div>
+        </noscript>
+
+    </div>
+</div>

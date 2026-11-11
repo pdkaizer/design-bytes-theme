@@ -50,6 +50,15 @@
     grid-column: 1 / -1;
 }
 
+/* List variant (Bytes): one column at a readable width, items divided by
+   rules instead of gaps. */
+.gh-postfeed.is-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    max-inline-size: 50rem;
+    margin-inline: auto;
+}
+
 /* Content grid: three named widths for posts and pages.
    full-start | wide-start | main-start [content] main-end | wide-end | full-end
    --canvas-columns is inherited, so nested grids (.kg-content-wide) can reuse it. */
