@@ -1,0 +1,94 @@
+/* Byte card
+   Compact, text-led card for the Bytes list: date, title and excerpt, with
+   a small thumbnail at the end. Responds to its slot: wider slots get a
+   larger thumbnail and title. The title link is stretched over the card.
+/* ---------------------------------------------------------- */
+
+.gh-byte {
+    --byte-gap: var(--space-4);
+    --byte-thumb-size: 6rem;
+    --byte-thumb-ratio: 1;
+    --byte-title-size: var(--step-1);
+
+    position: relative;
+    container-type: inline-size;
+    padding-block: var(--space-6);
+    border-block-end: 1px solid var(--color-border);
+
+    &:first-child {
+        border-block-start: 1px solid var(--color-border);
+    }
+
+    &:has(.gh-byte-link:focus-visible) {
+        outline: var(--focus-ring);
+        outline-offset: var(--space-1);
+        border-radius: var(--radius-sm);
+    }
+}
+
+.gh-byte-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--byte-gap);
+}
+
+.gh-byte-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.gh-byte-meta {
+    color: var(--color-text-muted);
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.gh-byte-title {
+    font-size: var(--byte-title-size);
+}
+
+.gh-byte-link {
+    &:hover {
+        color: var(--color-link);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.gh-byte-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    color: var(--color-text-muted);
+}
+
+.gh-byte-image {
+    inline-size: var(--byte-thumb-size);
+    aspect-ratio: var(--byte-thumb-ratio);
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+/* Wider slot: bigger landscape thumbnail and title. Tokens are overridden
+   on .gh-byte-inner because a container query can't style its container. */
+@container (width > 36rem) {
+    .gh-byte-inner {
+        --byte-gap: var(--space-8);
+        --byte-thumb-size: 11rem;
+        --byte-thumb-ratio: 4 / 3;
+        --byte-title-size: var(--step-2);
+    }
+}

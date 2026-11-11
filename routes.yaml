@@ -1,0 +1,29 @@
+# Ghost routes for Design Bytes.
+# Not part of the theme zip: upload in Ghost admin under Settings → Labs →
+# Routes. Locally it lives at content/settings/routes.yaml.
+#
+# /articles/ and /bytes/ are channels: filtered lists that update as posts are
+# tagged. Unlike collections, channels don't change any post's URL.
+# `data: tag.x` gives the templates the tag (for its description) and
+# redirects /tag/article/ and /tag/byte/ to the section pages.
+
+routes:
+  /articles/:
+    controller: channel
+    filter: tag:article
+    template: articles
+    data: tag.article
+  /bytes/:
+    controller: channel
+    filter: tag:byte
+    template: bytes
+    data: tag.byte
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

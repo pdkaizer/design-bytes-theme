@@ -1,0 +1,7 @@
+# Ghost redirects for Design Bytes.
+# Not part of the theme zip: upload in Ghost admin under Settings → Labs →
+# Redirects. Locally it lives at content/data/redirects.yaml.
+
+301:
+  # The old hand-maintained Bytes page now lives at the /bytes/ section.
+  /recent-bytes/: /bytes/

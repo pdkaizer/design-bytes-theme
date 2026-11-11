@@ -61,6 +61,10 @@ partials/             site header, site footer, card, theme toggle, icons
 *.hbs                 page templates
 ```
 
+## Sections: Articles and Bytes
+
+`/articles/` and `/bytes/` list every post tagged **Article** or **Byte**, using `articles.hbs` and `bytes.hbs`. They're defined in [routes.yaml](routes.yaml), and [redirects.yaml](redirects.yaml) sends the old `/recent-bytes/` page to `/bytes/`. Neither file is part of the theme zip. Upload both in Ghost admin under **Settings → Labs** (Routes and Redirects). Each section's intro text is its tag's description in Ghost admin.
+
 ## Deployment
 
 Merging to `main` runs the **Deploy Theme** workflow. It deploys to Ghost Pro only when the repository secrets `GHOST_ADMIN_API_URL` and `GHOST_ADMIN_API_KEY` are set. Until then the deploy step is skipped. Repository activity is posted to the Design Bytes Custom Theme project in Basecamp.
