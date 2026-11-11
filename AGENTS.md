@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository is the development starter theme for Ghost. Keep changes focused on theme source, generated assets, CI, and repo-level metadata for this repository.
+This repository is the custom Ghost theme for Design Bytes (design-bytes.com), forked from TryGhost/Starter. Keep changes focused on theme source, generated assets, CI, and repo-level metadata for this repository.
 
 ## Commands
 
@@ -15,7 +15,7 @@ pnpm test:ci
 pnpm zip
 ```
 
-Run the test command before opening a PR when theme files, generated assets, dependencies, or CI change.
+Run the test command before opening a PR when theme files, generated assets, dependencies, or CI change. `pnpm test:ci` fails only on fatal issues; also check `npx gscan .` for errors and warnings, which Ghost admin shows on upload.
 
 ## CSS guidelines
 
@@ -40,4 +40,4 @@ Build gotchas:
 - Edit source CSS, JavaScript, Handlebars templates, partials, and package metadata intentionally.
 - Keep generated assets/built/ files in sync when source assets change and the repo tracks those outputs.
 - Do not commit node_modules/, local Ghost content, generated zip files outside tracked release expectations, or secrets.
-- Repo settings, descriptions, and branch rules belong on the GitHub repository; internal clean-repos metadata stays in TryGhost/cleanrepos.
+- Repo settings, descriptions, and branch rules belong on the GitHub repository.

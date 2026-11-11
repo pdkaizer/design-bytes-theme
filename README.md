@@ -1,125 +1,70 @@
-# Ghost Starter Theme
+# Design Bytes Theme
 
-A starter framework for Ghost themes! Click **Use this template** to create a copy of this repo for everything you need to get started developing a custom Ghost theme.
+The custom [Ghost](https://ghost.org) theme for [Design Bytes](https://design-bytes.com), a site about the threads of creativity in digital product design. It's built on a fork of [TryGhost/Starter](https://github.com/TryGhost/Starter).
 
-&nbsp;
+## Features
 
-## First time using a Ghost theme?
+- **Light and dark modes.** The theme follows the reader's system setting, and a header toggle lets them choose. Their choice is remembered.
+- **Typography:** IBM Plex Serif headings and Inter body copy on a fluid 16px type scale.
+- **Plain modern CSS:** cascade layers, design tokens, native nesting and container queries, with no framework. See [design-bytes-css-architecture.md](design-bytes-css-architecture.md).
+- **Ghost admin settings respected:** the accent colour and fonts set in admin flow through the theme's tokens.
+- **Theme settings** for the footer's publisher line and disclaimer.
 
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+## Ghost admin setup
 
-We've documented this starter theme pretty heavily so that it should be possible to work out what's going on just by reading the code and the comments. We also have a robust set of resources to help you build awesome custom themes:
+These settings live in Ghost admin, not in the theme:
 
-- The official [theme documentation](https://ghost.org/docs/themes) is the complete resource for everything you need to know about Ghost theme development
-- [Tutorials](https://ghost.org/tutorials/) offer a step-by-step guide to building the most common features in Ghost themes
-- The [Ghost VS Code extension](https://marketplace.visualstudio.com/items?itemName=TryGhost.ghost) speeds up theme development and provides quick access to helpful info
-- All of Ghost's official themes are [open source](https://github.com/tryghost) and are a great reference for learning how to create a theme
+| Where | Setting |
+|---|---|
+| Settings → Design → Brand → Typography | Heading font **IBM Plex Serif**, body font **Inter** |
+| Settings → Design → Brand | Accent colour (Design Bytes uses `#342828`; the theme lightens it automatically in dark mode) |
+| Settings → Design → Theme | Publisher name, publisher URL, footer disclaimer |
+| Settings → Navigation | Primary menu (header) and secondary menu (footer, links only) |
 
-&nbsp;
+## Development
 
-## Starter theme features
-
-🔁&nbsp;Livereload by default. See changes instantly in the browser whenever you save a file.
-
-🔎&nbsp;Optimized for VS Code. Find the files you're looking for more easily.
-
-🗃️&nbsp;Write modern JavaScript. Use ESM out of the box to write more manageable Javascript.
-
-🗜️&nbsp;Assets optimized automatically. JavaScript and CSS are minified and transpiled by default.
-
-👟&nbsp;Fast compile times, powered by [Rollup](https://rollupjs.org).
-
-🦋&nbsp;Write next-gen CSS for today's browsers with [PostCSS](https://postcss.org/). Add the CSS tools you love via [`rollup.config.js`](rollup.config.js).
-
-🚢&nbsp;Ghost's [GH Deploy Action](.github/workflows/deploy-theme.yml) included by default. [Learn more how to deploy your theme automatically](https://github.com/TryGhost/action-deploy-theme)
-
-➕&nbsp;Extensible by design. Rollup's configuration structure makes it easy to add [any number of plugins easily](https://github.com/rollup/plugins). 
-
-&nbsp;
-
-## Theme structure
-
-The main files are:
-
-- [`default.hbs`](default.hbs) - The main template file
-- [`index.hbs`](index.hbs) - Used for the home page
-- [`post.hbs`](post.hbs) - Used for individual posts
-- [`page.hbs`](page.hbs) - Used for individual pages
-- [`tag.hbs`](tag.hbs) - Used for tag archives
-- [`author.hbs`](author.hbs) - Used for author archives
-
-One neat trick is that you can also create custom one-off templates just by adding the slug of a page to a template file. For example:
-
-- `page-about.hbs` - Custom template for the `/about/` page
-- `tag-news.hbs` - Custom template for `/tag/news/` archive
-- `author-jamie.hbs` - Custom template for `/author/jamie/` archive
-
-&nbsp;
-
-## Development guide
-
-The Starter theme provides a first-class development experience out of the box. 
-
-&nbsp;
-
-### Setup
-
-To see realtime changes during development, symlink the Starter theme folder to the `content/themes` folder in your local Ghost install. 
+Requires Node.js and pnpm (the version is pinned in `package.json`).
 
 ```bash
-ln -s /path/to/starter /ghost/content/themes/starter
+pnpm install --frozen-lockfile
+pnpm dev        # build CSS and JS, then rebuild and live-reload on save
+pnpm build      # one-off production build into assets/built/
+pnpm zip        # build and package the theme as design-bytes-theme.zip
+pnpm test:ci    # zip and validate with gscan (fails on fatal issues)
+npx gscan .     # full validation report, including errors and warnings
 ```
 
-Restart Ghost and select the Starter theme from **Settings**.
+### Local Ghost
 
-From the theme's root directory, install the dependencies:
+The theme is symlinked into a local Ghost install, so Ghost always serves the files on disk:
 
 ```bash
-pnpm install
+ln -s ~/design-bytes-theme ~/db-ghost-local/content/themes/design-bytes-theme
 ```
 
-If Node isn't installed, follow the [official Node installation guide](https://nodejs.org/).
+Activate it under Settings → Design → Change theme. CSS and template edits show on refresh while `pnpm dev` runs. New partials or `package.json` changes need `ghost restart`.
 
-&nbsp;
+## Project structure
 
-### Start development mode
-
-From the Starter theme folder, start development mode:
-
-```bash
-pnpm dev
+```
+assets/css/
+  index.css           entry file: layer order and imports
+  reset.css           layer: reset
+  tokens/             layer: tokens (primitives and semantic tokens)
+  base.css            layer: base (bare HTML elements)
+  layout.css          layer: layout (content grid, feed, flow)
+  components/         layer: components (header, card, buttons, …)
+  ghost/              layer: ghost (post content, Koenig cards, Portal)
+  utilities.css       layer: utilities (.responsive-image, .visually-hidden, …)
+assets/js/            theme toggle, mobile menu, infinite scroll
+partials/             site header, site footer, card, theme toggle, icons
+*.hbs                 page templates
 ```
 
-Changes you make to your styles, scripts, and Handlebars files will show up automatically in the browser. CSS and Javascript will be compiled and output to the `built` folder.
+## Deployment
 
-Press `ctrl + c` in the terminal to exit development mode.
+Merging to `main` runs the **Deploy Theme** workflow. It deploys to Ghost Pro only when the repository secrets `GHOST_ADMIN_API_URL` and `GHOST_ADMIN_API_KEY` are set. Until then the deploy step is skipped. Repository activity is posted to the Design Bytes Custom Theme project in Basecamp.
 
-&nbsp;
+## License
 
-### Build, zip, and test your theme
-
-Compile your CSS and JavaScript assets for production with the following command:
-
-```bash
-pnpm build
-```
-
-Create a zip archive:
-
-```bash
-pnpm zip
-```
-
-Use `gscan` to test your theme for compatibility with Ghost:
-
-```bash
-pnpm test
-```
-
-&nbsp;
-
-
-
-## Copyright & License
-
-Copyright (c) 2013-2026 Ghost Foundation - Released under the [MIT license](LICENSE).
+Released under the [MIT license](LICENSE). Based on Ghost Starter, copyright (c) 2013-2026 Ghost Foundation.
