@@ -66,10 +66,13 @@
     --step-5: clamp(3.0518rem, 2.597rem + 2.0213vw, 4.214rem);   /* 49 → 67px */
 
     /* Font stacks */
-    /* Font stacks. IBM Plex Serif and Inter come from Ghost's font service
-       when selected in admin (weights 400–600, no italics). */
-    --font-stack-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    --font-stack-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    /* Font stacks: system fallbacks only. IBM Plex Serif and Inter come
+       from Ghost's font service when selected in admin (weights 400–600),
+       plus the bundled italics in fonts.css. They're kept out of these
+       stacks so the italic-only bundled faces never stand in for upright
+       text when the fonts aren't selected. */
+    --font-stack-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    --font-stack-serif: Georgia, "Times New Roman", serif;
     --font-stack-mono: ui-monospace, Menlo, Consolas, monospace;
 
     --weight-light: 300;
