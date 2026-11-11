@@ -2,107 +2,93 @@
 /* ---------------------------------------------------------- */
 
 .gh-input,
-.gh-textarea {
-    background: var(--color-bg);
-    border-radius: var(--radius);
-    border: none;
-    border: solid 1px var(--color-border);
-    color: inherit;
-    display: block;
-    outline: 0;
-    padding: 0 0.6em;
-    text-decoration: none;
-    width: 100%;
-}
-
-.gh-input:focus {
-    border-color: var(--color-primary);
-}
-
+.gh-textarea,
 .gh-select {
-    height: var(--height);
-    padding-right: var(--height);
-    text-overflow: ellipsis;
-}
+    --input-bg: var(--color-surface);
+    --input-border: var(--color-border);
 
-.gh-select option {
-    color: var(--color-primary);
-    background: var(--color-bg);
-}
+    display: block;
+    inline-size: 100%;
+    padding-inline: var(--space-3);
+    color: inherit;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-control);
+    text-decoration: none;
+    transition: border-color var(--transition-base);
 
-.gh-select:focus::-ms-value {
-    background-color: transparent;
-}
-
-.gh-select::-ms-expand {
-    display: none;
+    &:focus {
+        --input-border: var(--color-accent);
+    }
 }
 
 .gh-input,
 .gh-select {
-    height: var(--height);
+    block-size: var(--control-height);
+}
+
+.gh-select {
+    padding-inline-end: var(--control-height);
+    text-overflow: ellipsis;
+
+    & option {
+        color: var(--color-text);
+        background: var(--color-bg);
+    }
 }
 
 .gh-textarea {
-    padding: 0.3em 0.6em;
+    padding-block: var(--space-2);
     resize: vertical;
 }
 
+/* Custom checkbox: a visually hidden input styling its sibling label.
+   Tokens live on the label because a sibling can't inherit them. */
 .gh-check {
     display: block;
-    margin-right: -2em;
+    inline-size: 1em;
+    margin-inline-end: -2em;
     opacity: 0;
-    width: 1em;
     z-index: -1;
-}
 
-.gh-check + label,
-.gh-check + label {
-    display: flex;
-    align-items: center;
-    color: var(--color-base);
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: var(--font-normal);
-    padding-left: calc((var(--height) * 0.6) + 0.75em);
-    padding-right: 2rem;
-    position: relative;
-    user-select: none;
-}
+    & + label {
+        --check-size: calc(var(--control-height) * 0.6);
+        --check-bg: var(--color-surface);
+        --check-border: var(--color-border);
+        --check-mark: "";
 
-.gh-check + label:before,
-.gh-check + label:before {
-    background: var(--color-bg);
-    border-radius: var(--radius);
-    border: solid 1px var(--color-border);
-    content: '';
-    display: inline-block;
-    height: calc(var(--height) * 0.6);
-    line-height: calc(var(--height) * 0.56);
-    text-align: center;
-    width: calc(var(--height) * 0.6);
-    margin-right: 1rem;
-}
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-inline: calc(var(--check-size) + var(--space-3)) var(--space-8);
+        color: var(--color-text);
+        font-size: 1em;
+        font-weight: var(--weight-regular);
+        cursor: pointer;
+        user-select: none;
 
-.gh-check:checked + label:before,
-.gh-check:checked + label:before {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-bg);
-    content: '✓';
-}
+        &::before {
+            content: var(--check-mark);
+            display: inline-grid;
+            place-items: center;
+            inline-size: var(--check-size);
+            block-size: var(--check-size);
+            margin-inline-end: var(--space-4);
+            color: var(--color-accent-text);
+            background: var(--check-bg);
+            border: 1px solid var(--check-border);
+            border-radius: var(--radius-full);
+        }
+    }
 
-.gh-check:focus + label:before,
-.gh-check:focus + label:before {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 1px var(--color-primary);
-}
+    &:checked + label {
+        --check-bg: var(--color-accent);
+        --check-border: var(--color-accent);
+        --check-mark: "✓";
+    }
 
-
-.gh-check + label:before {
-    border-radius: var(--radius);
-}
-
-.gh-check + label:before {
-    border-radius: 100%;
+    &:focus-visible + label::before {
+        outline: var(--focus-ring);
+        outline-offset: var(--focus-offset);
+    }
 }

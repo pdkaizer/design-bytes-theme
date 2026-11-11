@@ -1,234 +1,160 @@
-
-
-/* Content grid
+/* Ghost content
+   Post body (.gh-content) and Koenig card markup (.kg-*). Ghost controls
+   this markup, so it is kept out of the component layer.
 /* ---------------------------------------------------------- */
 
-.gh-canvas,
-.kg-width-full.kg-content-wide {
-    --gap: 4vw;
-    --main: min(var(--content-width, 720px), 100% - var(--gap) * 2);
-    --wide: minmax(0, calc((var(--container-width, 1200px) - var(--content-width, 720px)) / 2));
-    --full: minmax(var(--gap), 1fr);
-
-    display: grid;
-    grid-template-columns:
-        [full-start] var(--full)
-        [wide-start] var(--wide)
-        [main-start] var(--main) [main-end]
-        var(--wide) [wide-end]
-        var(--full) [full-end];
-}
-
-.gh-canvas > * {
-    grid-column: main-start / main-end;
-}
+/* Card widths (gscan requires .kg-width-wide and .kg-width-full) */
 
 .kg-width-wide,
 .kg-content-wide > div {
-    grid-column: wide-start / wide-end;
+    grid-column: wide;
+}
+
+.kg-width-wide img {
+    inline-size: 100%;
 }
 
 .kg-width-full {
-    grid-column: full-start / full-end;
-}
+    grid-column: full;
 
-.kg-width-full img {
-    width: 100%;
-}
-
-
-/* Content & Typography
-/* ---------------------------------------------------------- */
-
-.gh-content > * + * {
-    margin-top: 4vmin;
-}
-
-.gh-content [id]:not(:first-child) {
-    margin: 1.5em 0 0;
-}
-
-.gh-content > [id] + * {
-    margin-top: 1.5rem;
-}
-
-.gh-content [id] + .kg-card,
-.gh-content blockquote + .kg-card {
-    margin-top: 6vmin;
-}
-
-.gh-canvas > blockquote,
-.gh-canvas > ol,
-.gh-canvas > ul,
-.gh-canvas > dl,
-.gh-canvas > p {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1.6em;
-}
-
-.gh-content > ul,
-.gh-content > ol,
-.gh-content > dl {
-    padding-left: 1.9em;
-}
-
-.gh-content hr {
-    margin-top: 6vmin;
-}
-
-.gh-content hr + * {
-    margin-top: 6vmin !important;
-}
-
-.gh-content blockquote {
-    position: relative;
-    font-style: italic;
-}
-
-.gh-content blockquote::before {
-    content: "";
-    position: absolute;
-    left: -1.5em;
-    top: 0;
-    bottom: 0;
-    width: 0.3rem;
-    background: var(--color-primary);
-}
-
-@media (max-width: 650px) {
-    .gh-canvas blockquote,
-    .gh-canvas ol,
-    .gh-canvas ul,
-    .gh-canvas dl,
-    .gh-canvas p {
-        font-size: 1.8rem;
-    }
-
-    .gh-content blockquote::before {
-        left: -4vmin;
+    & img {
+        inline-size: 100%;
     }
 }
 
-
-/* Cards
-/* ---------------------------------------------------------- */
-
-.gh-content :not(.kg-card):not([id]) + .kg-card {
-    margin-top: 6vmin;
+/* Full-width cards with wide inner content reuse the canvas grid. */
+.kg-width-full.kg-content-wide {
+    display: grid;
+    grid-template-columns: var(--canvas-columns);
 }
 
-.gh-content .kg-card + :not(.kg-card) {
-    margin-top: 6vmin;
+/* Captions on wide and full cards */
+
+.kg-width-full.kg-card-hascaption {
+    display: grid;
+    grid-template-columns: var(--canvas-columns);
+
+    & img { grid-column: full; }
+    & figcaption { grid-column: main; }
 }
 
-figcaption {
-    padding: 1.5rem 1.5rem 0;
-    text-align: center;
-    color: rgba(0,0,0,0.5);
-    font-weight: 600;
-    font-size: 1.3rem;
-    line-height: 1.4em;
+.kg-width-wide.kg-card-hascaption img {
+    grid-column: wide;
 }
 
-figcaption strong {
-    color: rgba(0,0,0,0.8);
-}
-
-.gh-canvas :not(pre) code {
-    vertical-align: middle;
-    padding: 0.15em 0.4em 0.15em;
-    border: #e1eaef 1px solid;
-    font-weight: 400 !important;
-    font-size: 0.9em;
-    line-height: 1em;
-    color: #dc0050;
-    background: #f0f6f9;
-    border-radius: 0.25em;
-}
-
-.gh-canvas > pre {
-    overflow: scroll;
-    padding: 16px 20px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 5px;
-    box-shadow: 0 2px 6px -2px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.4);
-}
+/* Embeds and images */
 
 .kg-embed-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-}
+    inline-size: 100%;
 
-/* Default to 16 / 9 aspect ratio for YouTube & Vimeo embeds  */
-.kg-embed-card > :where(iframe[src*="youtube.com"],iframe[src*="vimeo.com"]) {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
+    /* Default YouTube and Vimeo embeds to 16:9. */
+    & > :where(iframe[src*="youtube.com"], iframe[src*="vimeo.com"]) {
+        inline-size: 100%;
+        block-size: auto;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 .kg-image-card img {
-    margin: auto;
+    margin-inline: auto;
 }
 
 
-/* Card captions
+/* Post body: rhythm and typography
 /* ---------------------------------------------------------- */
 
-.kg-width-full.kg-card-hascaption {
-    display: grid;
-    grid-template-columns: inherit;
-}
+.gh-content {
+    --flow-space: var(--space-8);
+    --flow-space-heading: 1.5em;
+    --flow-space-card: var(--space-12);
+    --prose-size: var(--step-1);
 
-.kg-width-wide.kg-card-hascaption img {
-    grid-column: wide-start / wide-end;
-}
-.kg-width-full.kg-card-hascaption img {
-    grid-column: 1 / -1;
-}
+    & > * + * {
+        margin-block-start: var(--flow-space);
+    }
 
-.kg-width-full.kg-card-hascaption figcaption {
-    grid-column: main-start / main-end;
-}
+    /* Headings get room above and pull the next element close. */
+    & > [id]:not(:first-child) {
+        margin-block-start: var(--flow-space-heading);
+    }
 
+    & > [id] + * {
+        margin-block-start: var(--space-4);
+    }
 
-/* Tables
-/* ---------------------------------------------------------- */
+    /* Cards and rules get more room on both sides. */
+    & > * + .kg-card,
+    & > .kg-card + *,
+    & > * + hr,
+    & > hr + * {
+        margin-block-start: var(--flow-space-card);
+    }
 
-.gh-content table {
-    border-collapse: collapse;
-    width: 100%;
-}
+    & > :is(p, ul, ol, dl, blockquote) {
+        font-size: var(--prose-size);
+        line-height: var(--leading-normal);
+    }
 
-.gh-content th {
-    padding: 0.5em 0.8em;
-    text-align: left;
-    font-size: .75em;
-    text-transform: uppercase;
-}
+    & > :is(ul, ol, dl) {
+        padding-inline-start: 1.9em;
+    }
 
-.gh-content td {
-    padding: 0.4em 0.7em;
-}
+    & blockquote {
+        padding-inline-start: var(--space-5);
+        border-inline-start: 0.1875rem solid var(--color-accent);
+        font-style: italic;
+    }
 
-.gh-content tbody tr:nth-child(2n + 1) {
-    background-color: rgba(0,0,0,0.1);
-    padding: 1px;
-}
+    & :not(pre) > code {
+        padding: 0.15em 0.4em;
+        color: var(--color-code);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        font-size: 0.9em;
+        line-height: 1;
+        vertical-align: middle;
+    }
 
-.gh-content tbody tr:nth-child(2n + 2) td:last-child {
-    box-shadow:
-        inset 1px 0 rgba(0,0,0,0.1),
-        inset -1px 0 rgba(0,0,0,0.1);
-}
+    & > pre {
+        overflow: auto;
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        font-size: var(--step--1);
+    }
 
-.gh-content tbody tr:nth-child(2n + 2) td {
-    box-shadow: inset 1px 0 rgba(0,0,0,0.1);
-}
+    /* Tables */
 
-.gh-content tbody tr:last-child {
-    border-bottom: 1px solid rgba(0,0,0,.1);
+    & table {
+        inline-size: 100%;
+        border-collapse: collapse;
+    }
+
+    & th {
+        padding: 0.5em 0.8em;
+        text-align: start;
+        font-size: 0.75em;
+        text-transform: uppercase;
+    }
+
+    & td {
+        padding: 0.4em 0.7em;
+    }
+
+    & :is(th, td) + :is(th, td) {
+        border-inline-start: 1px solid var(--color-border);
+    }
+
+    & tbody tr:nth-child(odd) {
+        background-color: var(--color-surface-strong);
+    }
+
+    & tbody tr:last-child {
+        border-block-end: 1px solid var(--color-border);
+    }
 }

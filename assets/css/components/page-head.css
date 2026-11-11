@@ -1,0 +1,57 @@
+/* Archive header (tag and author pages)
+/* ---------------------------------------------------------- */
+
+.gh-page-head {
+    padding-block: var(--section-space) var(--space-10);
+    margin-inline: auto;
+    text-align: center;
+
+    & > p {
+        max-inline-size: var(--measure);
+        margin: var(--space-2) auto 0;
+        color: var(--color-text-muted);
+        font-size: var(--step-1);
+        line-height: var(--leading-snug);
+    }
+}
+
+.gh-page-image {
+    margin-block-start: var(--space-10);
+}
+
+.gh-author-image {
+    --avatar-size: clamp(5rem, 12vmin, 8rem);
+
+    inline-size: var(--avatar-size);
+    block-size: var(--avatar-size);
+    margin: 0 auto var(--space-6);
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.gh-author-meta {
+    margin-block-start: var(--space-4);
+    font-size: var(--step-1);
+}
+
+.gh-author-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & a {
+        display: inline-flex;
+        align-items: center;
+        margin-inline: var(--space-1);
+    }
+
+    & a + a::before {
+        content: "";
+        display: block;
+        inline-size: 1px;
+        block-size: 1em;
+        margin-inline-end: var(--space-3);
+        background: var(--color-border);
+        transform: rotate(20deg);
+    }
+}

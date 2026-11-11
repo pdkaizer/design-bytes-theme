@@ -1,0 +1,8 @@
+/* Pagination (no-JS fallback for infinite scroll)
+/* ---------------------------------------------------------- */
+
+.gh-pagination .pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-block: var(--space-10);
+}

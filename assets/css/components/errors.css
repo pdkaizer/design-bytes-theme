@@ -1,0 +1,58 @@
+/* Error template
+/* ---------------------------------------------------------- */
+
+.gh-error {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block-end: var(--space-4);
+}
+
+.gh-error-content {
+    flex: 1 0 auto;
+    text-align: center;
+}
+
+.gh-error-code {
+    font-size: clamp(var(--step-5), 14vmin, calc(var(--step-5) * 3));
+}
+
+.gh-error-description {
+    max-inline-size: 37.5rem;
+    margin-inline: auto;
+    padding-inline: var(--space-8);
+    color: var(--color-text-muted);
+    font-size: var(--step-2);
+    font-weight: var(--weight-light);
+    line-height: var(--leading-tight);
+}
+
+.gh-error-link {
+    display: block;
+    margin-block-start: var(--space-10);
+}
+
+.gh-error-stack {
+    max-inline-size: 37.5rem;
+    margin-inline: auto;
+    padding-block: var(--section-space);
+    text-align: start;
+}
+
+.gh-error-stack-list {
+    margin-block-start: var(--space-10);
+    font-size: var(--step--1);
+
+    & > li {
+        margin: 0;
+        padding-block: var(--space-8);
+        border-block-start: 1px solid var(--color-border);
+    }
+}
+
+.gh-error-stack-function {
+    margin-block-end: 0.5em;
+    color: var(--color-danger);
+    font-size: var(--step-1);
+}

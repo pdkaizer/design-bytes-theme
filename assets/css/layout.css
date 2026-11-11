@@ -1,0 +1,73 @@
+/* Layout
+   Page composition primitives.
+/* ---------------------------------------------------------- */
+
+.gh-viewport {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100dvh;
+}
+
+.gh-main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Centered container at the wide content width. */
+.wrapper,
+.gh-container {
+    inline-size: 100%;
+    max-inline-size: var(--content-wide);
+    margin-inline: auto;
+}
+
+.gh-page {
+    padding-inline: var(--gutter);
+}
+
+.gh-article {
+    padding-block: var(--section-space);
+}
+
+/* Vertical rhythm between siblings. Tune with .flow-tight / .flow-loose. */
+.flow > * + * {
+    margin-block-start: var(--flow-space);
+}
+
+/* Auto-fill grid for post lists: columns adapt with no breakpoints.
+   .gh-postfeed is also the hook for assets/js/infiniteScroll.js. */
+.feed,
+.gh-postfeed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+    gap: var(--space-12) var(--space-10);
+    padding-block: var(--section-space);
+}
+
+/* The newest post on the home feed is featured across the full row. */
+.gh-postfeed > :first-child {
+    grid-column: 1 / -1;
+}
+
+/* Content grid: three named widths for posts and pages.
+   full-start | wide-start | main-start [content] main-end | wide-end | full-end
+   --canvas-columns is inherited, so nested grids (.kg-content-wide) can reuse it. */
+.gh-canvas {
+    --canvas-main: min(var(--measure), 100% - var(--gutter) * 2);
+    --canvas-wide: minmax(0, calc((var(--content-wide) - var(--measure)) / 2));
+    --canvas-full: minmax(var(--gutter), 1fr);
+    --canvas-columns:
+        [full-start] var(--canvas-full)
+        [wide-start] var(--canvas-wide)
+        [main-start] var(--canvas-main) [main-end]
+        var(--canvas-wide) [wide-end]
+        var(--canvas-full) [full-end];
+
+    display: grid;
+    grid-template-columns: var(--canvas-columns);
+
+    & > * {
+        grid-column: main;
+    }
+}
