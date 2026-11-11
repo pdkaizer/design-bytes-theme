@@ -1,0 +1,49 @@
+/* Light / dark mode toggle
+   Shows the icon for the mode a click switches to: moon in light mode,
+   sun in dark mode. Driven purely by the cascade, so the icon is right
+   before any JavaScript runs, including when the theme follows the OS.
+/* ---------------------------------------------------------- */
+
+.gh-theme-toggle {
+    --toggle-size: var(--control-height);
+    --toggle-icon-size: 1.25rem;
+    --toggle-text: currentColor;
+
+    display: inline-grid;
+    place-items: center;
+    inline-size: var(--toggle-size);
+    block-size: var(--toggle-size);
+    padding: 0;
+    color: var(--toggle-text);
+    background: none;
+    border: 0;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+
+    &:hover {
+        --toggle-text: var(--color-link);
+        transition: color var(--transition-base);
+    }
+
+    & svg {
+        inline-size: var(--toggle-icon-size);
+        block-size: var(--toggle-icon-size);
+    }
+
+    & .gh-icon-sun {
+        display: none;
+    }
+}
+
+/* Dark mode, pinned or from the OS: swap to the sun. */
+:root[data-theme="dark"] .gh-theme-toggle {
+    & .gh-icon-moon { display: none; }
+    & .gh-icon-sun { display: block; }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .gh-theme-toggle {
+        & .gh-icon-moon { display: none; }
+        & .gh-icon-sun { display: block; }
+    }
+}

@@ -1,0 +1,6 @@
+{{!--
+Applies a saved light/dark choice before first paint, so there's no flash of the
+wrong mode. Must stay inline in <head>, before the stylesheet. Key shared with
+assets/js/themeToggle.js.
+--}}
+<script>try{var t=localStorage.getItem("design-bytes-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>

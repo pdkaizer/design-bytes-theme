@@ -4,6 +4,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{> "theme-init"}}
     <link rel="stylesheet" href="{{asset "built/index.css"}}" />
     <script src="{{asset "built/index.js"}}" defer></script>
 
@@ -38,6 +39,7 @@
         </div>
         <div class="gh-head-actions">
             <div class="gh-head-actions-list">
+                {{> "theme-toggle"}}
                 {{search}}
                 {{#if @site.members_enabled}}
                     {{^if @member}}

@@ -4,10 +4,12 @@
 import "../css/index.css";
 
 // Import JS
+import themeToggle from "./themeToggle";
 import menuOpen from "./menuOpen";
 import infiniteScroll from "./infiniteScroll";
 
 
 // Call the menu and infinite scroll functions
+themeToggle();
 menuOpen();
 infiniteScroll();
