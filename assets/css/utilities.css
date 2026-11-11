@@ -14,6 +14,18 @@
     border: 0;
 }
 
+/* Responsive image at its natural shape: full width of its slot, height to
+   match, never cropped. Overrides any fixed aspect-ratio or object-fit a
+   component sets. */
+.responsive-image {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
 .flow-tight { --flow-space: var(--space-3); }
 .flow-loose { --flow-space: var(--space-12); }
 
