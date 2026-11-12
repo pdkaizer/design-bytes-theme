@@ -8,12 +8,18 @@ button. Shared by default.hbs and error.hbs.
     <nav class="gh-head-inner gh-container">
 
         <div class="gh-head-brand">
+            {{!-- Brand: the publication icon (Settings → General → Publication icon)
+                 beside the site title in the heading font. The icon is
+                 decorative because the title follows it. --}}
             <a class="gh-head-logo" href="{{@site.url}}">
-                {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}" />
-                {{else}}
-                    {{@site.title}}
+                {{#if @site.icon}}
+                    <img class="gh-head-icon{{#if @custom.dark_mode_icon}} is-light-only{{/if}}" src="{{@site.icon}}" alt="" width="48" height="48" />
+                    {{!-- Optional reversed-out icon for dark mode (theme setting). --}}
+                    {{#if @custom.dark_mode_icon}}
+                        <img class="gh-head-icon is-dark-only" src="{{@custom.dark_mode_icon}}" alt="" width="48" height="48" />
+                    {{/if}}
                 {{/if}}
+                <span class="gh-head-title">{{@site.title}}</span>
             </a>
             <button class="gh-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="gh-head">
                 <span class="gh-burger-box">

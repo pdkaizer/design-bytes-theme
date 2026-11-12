@@ -8,7 +8,8 @@
 .gh-head {
     --head-gap: var(--space-10);
     --head-logo-size: var(--step-1);
-    --head-logo-max: 2.5rem;
+    --head-logo-gap: var(--space-3);
+    --head-icon-size: 3rem;
     /* Space between menu items: 16px when the header is tight, up to 32px
        on wide screens. */
     --head-nav-gap: clamp(var(--space-4), 2.2vw, var(--space-8));
@@ -40,21 +41,44 @@
     grid-column-start: 1;
     display: flex;
     align-items: center;
-    max-inline-size: 12.5rem;
-    text-align: start;
-    word-break: break-all;
 }
 
+/* Publication icon + site title in the heading font. */
 .gh-head-logo {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--head-logo-gap);
     padding-block: var(--space-2);
     font-family: var(--font-heading);
     font-size: var(--head-logo-size);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--heading-weight);
     line-height: var(--leading-tight);
+    letter-spacing: var(--heading-tracking);
+    white-space: nowrap;
+}
 
-    & img {
-        max-block-size: var(--head-logo-max);
+.gh-head-icon {
+    flex: none;
+    inline-size: var(--head-icon-size);
+    block-size: var(--head-icon-size);
+    border-radius: var(--radius-sm);
+
+    /* With a dark mode icon set, show one image per mode. Same cascade as
+       the theme toggle icons, so it follows the OS and the toggle. */
+    &.is-dark-only {
+        display: none;
+    }
+}
+
+:root[data-theme="dark"] .gh-head-icon {
+    &.is-light-only { display: none; }
+    &.is-dark-only { display: block; }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .gh-head-icon {
+        &.is-light-only { display: none; }
+        &.is-dark-only { display: block; }
     }
 }
 

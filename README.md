@@ -26,7 +26,8 @@ These settings live in Ghost admin, not in the theme:
 |---|---|
 | Settings → Design → Brand → Typography | Heading font **IBM Plex Serif**, body font **Inter** |
 | Settings → Design → Brand | Accent colour (Design Bytes uses `#342828`; the theme lightens it automatically in dark mode) |
-| Settings → Design → Theme | Publisher name, publisher URL, footer disclaimer |
+| Settings → General | Publication icon: shown in the header beside the site title |
+| Settings → Design → Theme | Dark mode icon (optional reversed-out publication icon), publisher name, publisher URL, footer disclaimer |
 | Settings → Navigation | Primary menu (header) and secondary menu (footer, links only) |
 
 ## Development
