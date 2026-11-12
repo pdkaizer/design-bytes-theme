@@ -1,0 +1,30 @@
+/* Tag pill
+   Small label for a post's type (Article, Byte). On cards it sits above the
+   stretched title link, so it stays clickable on its own.
+/* ---------------------------------------------------------- */
+
+.gh-tag {
+    --tag-bg: var(--color-surface-strong);
+    --tag-text: var(--color-text);
+
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-inline-end: var(--space-2);
+    padding: 0.125rem var(--space-2);
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border-radius: var(--radius-full);
+    font-size: var(--step--2);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    vertical-align: 0.1em;
+
+    &:hover {
+        --tag-bg: var(--color-accent);
+        --tag-text: var(--color-accent-text);
+        transition: color var(--transition-base), background-color var(--transition-base);
+    }
+}
