@@ -1,0 +1,23 @@
+{{!--
+End-of-post newsletter sign-up. Shown only when members are enabled and the
+reader isn't signed in. Ghost's members script handles the form: it sends a
+confirmation email and subscribes to the site's default newsletter(s).
+Loading, success and error states are styled in components/members.css.
+--}}
+{{#if @site.members_enabled}}
+{{^if @member}}
+<section class="gh-cta" aria-labelledby="gh-cta-title">
+    <h2 class="gh-cta-title" id="gh-cta-title">Subscribe to {{@site.title}}</h2>
+    <p class="gh-cta-text">New Bytes and articles in your inbox. No spam, unsubscribe anytime.</p>
+    <form class="gh-cta-form" data-members-form="signup">
+        <input class="gh-input" type="email" data-members-email required placeholder="you@example.com" aria-label="Email address" autocomplete="email">
+        <button class="gh-button gh-button-primary" type="submit">
+            <span class="gh-button-content">Subscribe</span>
+            <span class="gh-button-loader" aria-hidden="true"></span>
+        </button>
+        <p class="message-success" role="status"><strong>Almost there.</strong> Check your inbox and click the link to confirm your subscription.</p>
+        <p class="message-error" role="alert">That didn't work. Check your email address and try again.</p>
+    </form>
+</section>
+{{/if}}
+{{/if}}

@@ -1,0 +1,52 @@
+/* Newsletter sign-up (end of post)
+   A quiet panel after the article. Input and button sit side by side and
+   stack in narrow slots. Form states live in members.css.
+/* ---------------------------------------------------------- */
+
+.gh-cta {
+    --cta-bg: var(--color-surface);
+    --cta-border: var(--color-border);
+    --cta-padding: var(--space-8) var(--space-6);
+    --cta-title-size: var(--step-2);
+
+    container-type: inline-size;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    margin-block: var(--section-space) 0;
+    padding: var(--cta-padding);
+    text-align: center;
+    background: var(--cta-bg);
+    border: 1px solid var(--cta-border);
+    border-radius: var(--radius-lg);
+}
+
+.gh-cta-title {
+    font-size: var(--cta-title-size);
+}
+
+.gh-cta-text {
+    max-inline-size: 40ch;
+    color: var(--color-text-muted);
+}
+
+.gh-cta-form {
+    display: flex;
+    gap: var(--space-2);
+    inline-size: 100%;
+    max-inline-size: 28rem;
+    margin-block-start: var(--space-3);
+
+    & .gh-input {
+        flex: 1;
+        min-inline-size: 0;
+        background: var(--color-bg);
+    }
+}
+
+/* Narrow slot: stack the button under the input. */
+@container (width < 26rem) {
+    .gh-cta-form {
+        flex-direction: column;
+    }
+}
