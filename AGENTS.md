@@ -26,6 +26,7 @@ All CSS follows [design-bytes-css-architecture.md](design-bytes-css-architecture
 - Components respond to their container (container queries), not the viewport.
 - Ghost admin settings (`--ghost-accent-color`, `--gh-font-heading`, `--gh-font-body`) flow through tokens with theme fallbacks.
 - Plain modern CSS with native nesting. No frameworks or preprocessors. PostCSS only bundles and minifies.
+- Browser baseline (decided 2026-11-11): Safari 17.5+ and Chrome, Edge and Firefox from 2024 on. Don't add fallbacks or polyfills for older browsers.
 
 The source entry is `assets/css/index.css`, which builds to `assets/built/index.css`. Where the guidelines say "`screen.css`", they mean the source entry file.
 
