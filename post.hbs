@@ -68,6 +68,8 @@
             Written by {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}}
         </div>
 
+        {{> "newsletter-cta"}}
+
         {{#if comments}}
         <section class="gh-post-comments">
             {{comments}}

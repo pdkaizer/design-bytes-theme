@@ -19,18 +19,21 @@ form[data-members-form] {
         visibility: hidden;
     }
 
+    /* CSS spinner in the button's text colour. */
     &.loading .gh-button-loader {
         position: absolute;
         inset: 0;
         display: grid;
         place-items: center;
 
-        & svg {
-            block-size: 60%;
-        }
-
-        & :is(path, rect) {
-            fill: currentColor;
+        &::before {
+            content: "";
+            inline-size: 1.1em;
+            block-size: 1.1em;
+            border: 2px solid currentColor;
+            border-inline-end-color: transparent;
+            border-radius: var(--radius-full);
+            animation: gh-spin 0.7s linear infinite;
         }
     }
 
@@ -81,4 +84,8 @@ form[data-members-form] {
     block-size: 0.9375rem;
     margin-inline-end: var(--space-1);
     fill: currentColor;
+}
+
+@keyframes gh-spin {
+    to { transform: rotate(1turn); }
 }
