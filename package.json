@@ -77,6 +77,10 @@
             }
         },
         "custom": {
+            "dark_mode_icon": {
+                "type": "image",
+                "description": "Optional reversed-out version of the publication icon, shown in the header in dark mode."
+            },
             "publisher_name": {
                 "type": "text",
                 "default": "",
