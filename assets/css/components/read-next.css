@@ -1,0 +1,21 @@
+/* Read next
+   Three related posts after the article, in a grid of standard cards.
+   Unlike the home feed, no card is featured: every card is equal.
+/* ---------------------------------------------------------- */
+
+.gh-related {
+    padding: var(--section-space) var(--gutter) 0;
+}
+
+.gh-related-title {
+    margin-block-end: var(--space-8);
+    padding-block-start: var(--space-8);
+    border-block-start: 1px solid var(--color-border);
+    font-size: var(--step-3);
+}
+
+.gh-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+    gap: var(--space-12) var(--space-10);
+}

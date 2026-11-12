@@ -1,0 +1,13 @@
+{{!-- Renders the related posts found by read-next.hbs. --}}
+{{#if posts}}
+<section class="gh-related" aria-labelledby="gh-related-title">
+    <div class="gh-container">
+        <h2 class="gh-related-title" id="gh-related-title">{{title}}</h2>
+        <div class="gh-related-grid">
+            {{#foreach posts}}
+                {{> "card"}}
+            {{/foreach}}
+        </div>
+    </div>
+</section>
+{{/if}}

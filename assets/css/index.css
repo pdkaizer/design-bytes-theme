@@ -22,10 +22,12 @@ Later layers beat earlier ones regardless of specificity.
 @import "components/forms.css" layer(components);
 @import "components/header.css" layer(components);
 @import "components/footer.css" layer(components);
+@import "components/tag.css" layer(components);
 @import "components/card.css" layer(components);
 @import "components/byte-card.css" layer(components);
 @import "components/page-head.css" layer(components);
 @import "components/post.css" layer(components);
+@import "components/read-next.css" layer(components);
 @import "components/readmore.css" layer(components);
 @import "components/pagination.css" layer(components);
 @import "components/members.css" layer(components);

@@ -1,0 +1,20 @@
+{{!--
+Related posts after an article: three more posts of the same type (Byte or
+Article), newest first, excluding this post. Posts without a type tag get
+the three newest posts. Used inside {{#post}} in post.hbs.
+--}}
+{{#has tag="Byte"}}
+    {{#get "posts" filter="tag:byte+id:-{{id}}" limit="3" include="tags" as |related|}}
+        {{> "read-next-list" posts=related title="More Bytes"}}
+    {{/get}}
+{{else}}
+    {{#has tag="Article"}}
+        {{#get "posts" filter="tag:article+id:-{{id}}" limit="3" include="tags" as |related|}}
+            {{> "read-next-list" posts=related title="More articles"}}
+        {{/get}}
+    {{else}}
+        {{#get "posts" filter="id:-{{id}}" limit="3" include="tags" as |related|}}
+            {{> "read-next-list" posts=related title="Read next"}}
+        {{/get}}
+    {{/has}}
+{{/has}}

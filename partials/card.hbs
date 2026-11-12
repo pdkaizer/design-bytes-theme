@@ -48,7 +48,7 @@ Re-usable card for linking to posts
             </picture>
         {{/if}}
         <div class="gh-card-content">
-            <span class="gh-card-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
+            <span class="gh-card-meta">{{> "post-type"}}<time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
             <h2 class="gh-card-title"><a class="gh-card-link" href="{{url}}">{{title}}</a></h2>
             <p class="gh-card-excerpt">{{excerpt}}</p>
             <span class="gh-card-more" aria-hidden="true">Read more</span>
