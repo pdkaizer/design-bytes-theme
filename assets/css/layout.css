@@ -8,6 +8,11 @@
     min-block-size: 100dvh;
 }
 
+/* Target of the skip link; focus moves here without drawing a ring. */
+.gh-main:focus {
+    outline: none;
+}
+
 .gh-main {
     flex: 1 0 auto;
     display: flex;

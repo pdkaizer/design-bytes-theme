@@ -2,6 +2,8 @@
 Site header: logo, primary navigation, theme toggle, search and the members
 button. Shared by default.hbs and error.hbs.
 --}}
+<a class="gh-skip-link" href="#main">Skip to content</a>
+
 <header id="gh-head" class="gh-head">
     <nav class="gh-head-inner gh-container">
 
@@ -13,11 +15,11 @@ button. Shared by default.hbs and error.hbs.
                     {{@site.title}}
                 {{/if}}
             </a>
-            <a class="gh-burger" role="button" aria-label="menu">
-                <div class="gh-burger-box">
-                    <div class="gh-burger-inner"></div>
-                </div>
-            </a>
+            <button class="gh-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="gh-head">
+                <span class="gh-burger-box">
+                    <span class="gh-burger-inner"></span>
+                </span>
+            </button>
         </div>
         <div class="gh-head-menu">
             {{navigation}}

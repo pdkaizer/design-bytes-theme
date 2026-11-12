@@ -124,6 +124,10 @@
 
     position: relative;
     display: none;
+    padding: 0;
+    color: inherit;
+    background: none;
+    border: 0;
     cursor: pointer;
 }
 
@@ -137,6 +141,7 @@
 }
 
 .gh-burger-inner {
+    display: block;
     inline-size: 100%;
     block-size: 100%;
 }
@@ -216,6 +221,25 @@ body:not(.gh-head-open) .gh-burger:hover {
 
     & :is(.gh-head-menu, .gh-head-actions, .gh-head-actions-list) {
         justify-content: center;
+    }
+}
+
+/* Skip link: hidden until focused from the keyboard. */
+
+.gh-skip-link {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 1000;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-accent-text);
+    background: var(--color-accent);
+    border-radius: var(--radius-control);
+    font-weight: var(--weight-semibold);
+    transform: translateY(-200%);
+
+    &:focus-visible {
+        transform: none;
     }
 }
 

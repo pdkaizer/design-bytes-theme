@@ -10,6 +10,14 @@ The custom [Ghost](https://ghost.org) theme for [Design Bytes](https://design-by
 - **Ghost admin settings respected:** the accent colour and fonts set in admin flow through the theme's tokens.
 - **Theme settings** for the footer's publisher line and disclaimer.
 
+## Browser support
+
+Modern browsers from roughly the last two years: Safari 17.5+, and Chrome, Edge and Firefox from 2024 on. The CSS ships untranspiled, with no fallbacks. The newest feature it depends on is `light-dark()` for the light and dark colours. Older browsers will show broken colours.
+
+## Accessibility
+
+Colour tokens meet WCAG AA contrast in both modes (body text about 18:1, the weakest text pairing about 7:1). The theme includes a skip link, a keyboard-operable menu button that announces its state, a focus ring from the accent colour, and reduced-motion support.
+
 ## Ghost admin setup
 
 These settings live in Ghost admin, not in the theme:

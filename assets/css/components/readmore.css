@@ -12,9 +12,14 @@
         text-decoration: none;
     }
 
-    & h4 {
+    /* Titles are plain text (not headings) styled like the heading face. */
+    & .gh-readmore-title {
         inline-size: 100%;
-        font-size: inherit;
+        font-family: var(--font-heading);
+        font-weight: var(--heading-weight);
+        line-height: var(--leading-tight);
+        letter-spacing: var(--heading-tracking);
+        text-wrap: balance;
     }
 
     & svg {
