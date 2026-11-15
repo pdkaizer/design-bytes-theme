@@ -1,0 +1,42 @@
+{{!--
+Contact form, sent to the Formspree endpoint set in Ghost admin
+(Design & branding → Customize → Site wide → Contact form endpoint).
+assets/js/contactForm.js sends it without leaving the page; without
+JavaScript it posts normally and Formspree shows its own thank-you page.
+Formspree uses the "email" field as the reply-to address, ignores
+submissions that fill in the hidden "_gotcha" field (spam bots do), and
+uses "_subject" as the email subject.
+--}}
+{{#if @custom.contact_form_endpoint}}
+<section class="gh-contact" aria-labelledby="gh-contact-title">
+    <h2 class="gh-contact-title" id="gh-contact-title">Send a message</h2>
+    <form class="gh-contact-form" action="{{@custom.contact_form_endpoint}}" method="POST" data-contact-form>
+        <div class="gh-contact-field">
+            <label for="contact-name">Name</label>
+            <input class="gh-input" id="contact-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="gh-contact-field">
+            <label for="contact-email">Email</label>
+            <input class="gh-input" id="contact-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="gh-contact-field is-wide">
+            <label for="contact-message">Message</label>
+            <textarea class="gh-textarea" id="contact-message" name="message" rows="7" required></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="New message from {{@site.title}}">
+        <div class="gh-contact-trap" aria-hidden="true">
+            <label for="contact-gotcha">Leave this field empty</label>
+            <input id="contact-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="gh-contact-actions is-wide">
+            <button class="gh-button gh-button-primary" type="submit">
+                <span class="gh-button-content">Send message</span>
+                <span class="gh-button-loader" aria-hidden="true"></span>
+            </button>
+            <p class="gh-contact-status" role="status"></p>
+        </div>
+    </form>
+</section>
+{{/if}}

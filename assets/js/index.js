@@ -7,9 +7,11 @@ import "../css/index.css";
 import themeToggle from "./themeToggle";
 import menuOpen from "./menuOpen";
 import infiniteScroll from "./infiniteScroll";
+import contactForm from "./contactForm";
 
 
 // Call the menu and infinite scroll functions
 themeToggle();
 menuOpen();
 infiniteScroll();
+contactForm();

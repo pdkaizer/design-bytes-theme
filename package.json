@@ -95,6 +95,11 @@
                 "type": "text",
                 "default": "",
                 "description": "Plain text shown under the footer menu, such as a disclaimer."
+            },
+            "contact_form_endpoint": {
+                "type": "text",
+                "default": "https://formspree.io/f/mvkakbkz",
+                "description": "Formspree endpoint for the form on the page with the slug \"contact\"."
             }
         }
     },
