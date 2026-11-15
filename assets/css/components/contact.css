@@ -1,0 +1,85 @@
+/* Contact form
+   On the Contact page, after the page content. Name and email sit side by
+   side when the slot is wide enough; the message spans the full width.
+   The button's sending spinner comes from members.css.
+/* ---------------------------------------------------------- */
+
+.gh-contact {
+    --contact-gap: var(--space-5);
+
+    container-type: inline-size;
+    margin-block-start: var(--section-space);
+    padding-block-start: var(--space-8);
+    border-block-start: 1px solid var(--color-border);
+}
+
+.gh-contact-title {
+    margin-block-end: var(--space-6);
+    font-size: var(--step-2);
+}
+
+.gh-contact-form {
+    display: grid;
+    gap: var(--contact-gap);
+}
+
+.gh-contact-field {
+    display: grid;
+    gap: var(--space-2);
+
+    & label {
+        font-size: var(--step--1);
+        font-weight: var(--weight-semibold);
+    }
+}
+
+/* Spam trap: kept off screen, so only bots fill it in. */
+.gh-contact-trap {
+    position: absolute;
+    inset-inline-start: -100vw;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+}
+
+.gh-contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+/* Result message: empty until the form has been sent. */
+.gh-contact-status {
+    --status-text: var(--color-text);
+    --status-border: var(--color-success);
+
+    flex: 1 1 16rem;
+    padding: var(--space-3) var(--space-4);
+    color: var(--status-text);
+    background: var(--color-surface);
+    border-inline-start: 3px solid var(--status-border);
+    border-radius: var(--radius-control);
+    font-size: var(--step--1);
+    line-height: var(--leading-snug);
+
+    &:empty {
+        display: none;
+    }
+
+    &[data-state="error"] {
+        --status-text: var(--color-danger);
+        --status-border: var(--color-danger);
+    }
+}
+
+/* Wide slot: name and email side by side. */
+@container (width >= 32rem) {
+    .gh-contact-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gh-contact-form .is-wide {
+        grid-column: 1 / -1;
+    }
+}

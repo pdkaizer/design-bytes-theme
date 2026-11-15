@@ -3,9 +3,10 @@
    sign-up and account pages are handled by Ghost's Portal pop-up.
 /* ---------------------------------------------------------- */
 
-/* Form states, toggled by Ghost's members script */
+/* Form states, toggled by Ghost's members script (and contactForm.js,
+   which only uses the loading state) */
 
-form[data-members-form] {
+form:is([data-members-form], [data-contact-form]) {
     & .gh-button {
         position: relative;
         min-inline-size: 7.5rem;

@@ -32,6 +32,7 @@ Later layers beat earlier ones regardless of specificity.
 @import "components/pagination.css" layer(components);
 @import "components/members.css" layer(components);
 @import "components/newsletter-cta.css" layer(components);
+@import "components/contact.css" layer(components);
 @import "components/errors.css" layer(components);
 @import "components/badge.css" layer(components);
 @import "components/theme-toggle.css" layer(components);
