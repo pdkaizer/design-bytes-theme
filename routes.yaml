@@ -5,7 +5,12 @@
 # /articles/ and /bytes/ are channels: filtered lists that update as posts are
 # tagged. Unlike collections, channels don't change any post's URL.
 # `data: tag.x` gives the templates the tag (for its description) and
-# redirects /tag/article/ and /tag/byte/ to the section pages.
+# redirects /tag/article/, /tag/byte/ and /tag/resource/ to the section pages.
+#
+# /resources/ is a collection rather than a channel, so Resources stay out of
+# the home feed: the home collection takes every post except those tagged
+# "resource". Both collections use /{slug}/, so post URLs don't change.
+# Collections are matched top to bottom; keep /resources/ above /.
 
 routes:
   /articles/:
@@ -20,8 +25,14 @@ routes:
     data: tag.byte
 
 collections:
+  /resources/:
+    permalink: /{slug}/
+    filter: tag:resource
+    template: resources
+    data: tag.resource
   /:
     permalink: /{slug}/
+    filter: tag:-resource
     template: index
 
 taxonomies:
