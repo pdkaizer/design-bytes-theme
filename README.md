@@ -71,13 +71,15 @@ partials/             site header, site footer, card, theme toggle, icons
 *.hbs                 page templates
 ```
 
-## Sections: Articles and Bytes
+## Sections: Articles, Bytes and Resources
 
 `/articles/` and `/bytes/` list every post tagged **Article** or **Byte**, using `articles.hbs` and `bytes.hbs`. They're defined in [routes.yaml](routes.yaml), and [redirects.yaml](redirects.yaml) sends the old `/recent-bytes/` page to `/bytes/`. Neither file is part of the theme zip. Upload both in Ghost admin under **Settings → Labs** (Routes and Redirects). Each section's intro text is its tag's description in Ghost admin.
 
+`/resources/` lists every post tagged **Resource**, using `resources.hbs`. It's a collection rather than a channel, so Resources stay out of the home feed and the untyped "Read next" list. Each type tag (Article, Byte, Resource) also gives its posts a pill linking to the section, and a "More …" list at the end of the post.
+
 ## Deployment
 
-Merging to `main` runs the **Deploy Theme** workflow. It deploys to Ghost Pro only when the repository secrets `GHOST_ADMIN_API_URL` and `GHOST_ADMIN_API_KEY` are set. Until then the deploy step is skipped. Repository activity is posted to the Design Bytes Custom Theme project in Basecamp.
+Merging to `main` runs the **Deploy Theme** workflow. It runs the theme checks, then deploys the theme to Ghost Pro using the repository secrets `GHOST_ADMIN_API_URL` and `GHOST_ADMIN_API_KEY`, so a merge to `main` goes live. Routes, redirects and admin settings aren't deployed; change those in Ghost admin. Repository activity is posted to the Design Bytes Custom Theme project in Basecamp.
 
 ## License
 

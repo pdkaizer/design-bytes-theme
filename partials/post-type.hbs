@@ -1,7 +1,7 @@
 {{!--
 Tag pill showing the post's type, linking to its section. Ghost's
-primary_tag is just the first tag added, so the type tags (Article, Byte)
-are checked explicitly; other posts fall back to the primary tag.
+primary_tag is just the first tag added, so the type tags (Article, Byte
+and Resource) are checked explicitly; other posts fall back to the primary tag.
 Needs the post's tags, so {{#get}} calls must include="tags".
 --}}
 {{#has tag="Byte"}}
@@ -10,6 +10,10 @@ Needs the post's tags, so {{#get}} calls must include="tags".
     {{#has tag="Article"}}
         <a class="gh-tag" href="{{@site.url}}/articles/">Article</a>
     {{else}}
-        {{#primary_tag}}<a class="gh-tag" href="{{url}}">{{name}}</a>{{/primary_tag}}
+        {{#has tag="Resource"}}
+            <a class="gh-tag" href="{{@site.url}}/resources/">Resource</a>
+        {{else}}
+            {{#primary_tag}}<a class="gh-tag" href="{{url}}">{{name}}</a>{{/primary_tag}}
+        {{/has}}
     {{/has}}
 {{/has}}
