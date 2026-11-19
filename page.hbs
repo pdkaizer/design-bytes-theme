@@ -25,5 +25,11 @@
         {{content}}
     </div>
 
+    {{!-- Same newsletter sign-up as the end of posts. Hidden for signed-in
+    members. The Contact page has its own template, so it isn't shown there. --}}
+    <footer class="gh-footer gh-canvas">
+        {{> "newsletter-cta"}}
+    </footer>
+
 </article>
 {{/post}}
