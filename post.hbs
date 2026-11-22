@@ -82,16 +82,33 @@
 
 {{> "read-next"}}
 
+{{!--
+Previous/next links. Ghost's next_post/prev_post ignore collections, so
+Resources (their own collection) would link across to Articles and Bytes.
+Resource posts move between Resources only (Resource is their primary tag);
+other posts skip a link that would land on a Resource.
+--}}
 <aside class="gh-readmore">
     <div class="gh-readmore-inner gh-container">
-        <div class="gh-readmore-next">
-            {{#next_post}}<a href="{{url}}">{{> "icons/arrow-left"}} <span class="gh-readmore-title">{{title}}</span></a>{{/next_post}}
-        </div>
-        <div class="gh-readmore-prev">
-            {{#prev_post}}<a href="{{url}}">
-                <span class="gh-readmore-title">{{title}}</span> {{> "icons/arrow-right"}}
-            </a>{{/prev_post}}
-        </div>
+        {{#has tag="Resource"}}
+            <div class="gh-readmore-next">
+                {{#next_post in="primary_tag"}}<a href="{{url}}">{{> "icons/arrow-left"}} <span class="gh-readmore-title">{{title}}</span></a>{{/next_post}}
+            </div>
+            <div class="gh-readmore-prev">
+                {{#prev_post in="primary_tag"}}<a href="{{url}}">
+                    <span class="gh-readmore-title">{{title}}</span> {{> "icons/arrow-right"}}
+                </a>{{/prev_post}}
+            </div>
+        {{else}}
+            <div class="gh-readmore-next">
+                {{#next_post}}{{^has tag="Resource"}}<a href="{{url}}">{{> "icons/arrow-left"}} <span class="gh-readmore-title">{{title}}</span></a>{{/has}}{{/next_post}}
+            </div>
+            <div class="gh-readmore-prev">
+                {{#prev_post}}{{^has tag="Resource"}}<a href="{{url}}">
+                    <span class="gh-readmore-title">{{title}}</span> {{> "icons/arrow-right"}}
+                </a>{{/has}}{{/prev_post}}
+            </div>
+        {{/has}}
     </div>
 </aside>
 
