@@ -30,6 +30,7 @@ These settings live in Ghost admin, not in the theme:
 | Settings → Design → Theme | Dark mode icon (optional reversed-out publication icon), publisher name, publisher URL, footer disclaimer, contact form endpoint (Formspree; defaults to the Design Bytes form) |
 | Settings → Navigation | Primary menu (header) and secondary menu (footer, links only) |
 | Pages | A page with the slug `contact` uses `page-contact.hbs`: its content, then the contact form |
+| Editor → Signup card | Place a sign-up anywhere in a post or page. The theme styles it to match the end-of-post panel and hides that panel on the same page. The editor's heading, subheading, button and disclaimer text are used; its background and layout options are not |
 
 ## Development
 

@@ -55,7 +55,7 @@
     ],
     "config": {
         "card_assets": {
-            "exclude": ["button"]
+            "exclude": ["button", "signup"]
         },
         "posts_per_page": 15,
         "image_sizes": {
