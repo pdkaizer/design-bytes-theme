@@ -39,5 +39,6 @@ Later layers beat earlier ones regardless of specificity.
 
 @import "ghost/content.css" layer(ghost);
 @import "ghost/embeds.css" layer(ghost);
+@import "ghost/signup-card.css" layer(ghost);
 
 @import "utilities.css" layer(utilities);

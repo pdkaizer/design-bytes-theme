@@ -48,5 +48,16 @@
 @container (width < 26rem) {
     .gh-cta-form {
         flex-direction: column;
+
+        /* flex: 1 would squash the input's height in a column. */
+        & .gh-input {
+            flex: none;
+        }
     }
+}
+
+/* A post or page with a Signup card in its content already has a sign-up
+   form (styled to match, ghost/signup-card.css), so skip this one. */
+.gh-article:has(.kg-signup-card) .gh-cta {
+    display: none;
 }

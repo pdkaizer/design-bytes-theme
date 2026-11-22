@@ -1,0 +1,184 @@
+/* Signup card (Koenig)
+   Styled to match the end-of-post newsletter panel (components/newsletter-cta.css).
+   Ghost's own signup card CSS is switched off (card_assets.exclude in
+   package.json). The editor's background, image and layout options are
+   overridden, so the card always reads as the same panel; the heading,
+   subheading, button text and disclaimer still come from the editor.
+
+   Ghost writes the editor's colours as inline styles (background on the card,
+   text colour on the heading, subheading, disclaimer and messages, and the
+   button's text colour). Inline styles beat any stylesheet rule, so only
+   those properties use !important. Without it the card stays light grey with
+   black text in dark mode.
+/* ---------------------------------------------------------- */
+
+.kg-signup-card {
+    --signup-bg: var(--color-surface);
+    --signup-border: var(--color-border);
+    --signup-text: var(--color-text);
+    --signup-muted: var(--color-text-muted);
+    --signup-padding: var(--space-8) var(--space-6);
+    --signup-title-size: var(--step-2);
+
+    container-type: inline-size;
+    color: var(--signup-text);
+    background-color: var(--signup-bg) !important;
+    border: 1px solid var(--signup-border);
+    border-radius: var(--radius-lg);
+
+    /* Background images and split layouts aren't part of the panel design. */
+    & > picture,
+    & .kg-signup-card-image {
+        display: none;
+    }
+}
+
+.kg-signup-card-content {
+    display: block;
+}
+
+.kg-signup-card-text {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    padding: var(--signup-padding);
+    text-align: center;
+}
+
+.kg-signup-card-heading {
+    color: var(--signup-text) !important;
+    font-size: var(--signup-title-size);
+}
+
+.kg-signup-card-subheading,
+.kg-signup-card-disclaimer {
+    max-inline-size: 40ch;
+    color: var(--signup-muted) !important;
+}
+
+.kg-signup-card-disclaimer {
+    font-size: var(--step--1);
+}
+
+.kg-signup-card-form {
+    position: relative;
+    inline-size: 100%;
+    max-inline-size: 28rem;
+    margin-block-start: var(--space-3);
+}
+
+.kg-signup-card-fields {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Same look as .gh-input, on the page background like the end-of-post panel. */
+.kg-signup-card-input {
+    flex: 1;
+    min-inline-size: 0;
+    block-size: var(--control-height);
+    padding-inline: var(--space-3);
+    color: inherit;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    font: inherit;
+
+    &:focus {
+        border-color: var(--color-accent);
+    }
+}
+
+/* Same look as .gh-button.gh-button-primary. */
+.kg-signup-card-button {
+    --signup-button-bg: var(--color-accent);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 7.5rem;
+    block-size: var(--control-height);
+    padding-inline: var(--space-5);
+    color: var(--color-accent-text) !important;
+    background-color: var(--signup-button-bg);
+    border: 0;
+    border-radius: var(--radius-control);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: var(--weight-semibold);
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+        --signup-button-bg: var(--color-accent-hover);
+        transition: background-color var(--transition-base);
+    }
+}
+
+/* Form states, set by Ghost's members script. */
+.kg-signup-card-button-loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    place-items: center;
+
+    & svg {
+        inline-size: 1.25rem;
+        block-size: 1.25rem;
+    }
+}
+
+.kg-signup-card-success,
+.kg-signup-card-error {
+    display: none;
+    color: var(--signup-text) !important;
+    font-size: var(--step--1);
+}
+
+.kg-signup-card-form {
+    &.loading .kg-signup-card-button-default {
+        visibility: hidden;
+    }
+
+    &.loading .kg-signup-card-button-loading {
+        display: grid;
+    }
+
+    &.success .kg-signup-card-fields {
+        display: none;
+    }
+
+    &.success .kg-signup-card-success {
+        display: block;
+        padding-block: var(--space-2);
+        font-weight: var(--weight-medium);
+    }
+
+    &.error .kg-signup-card-input {
+        border-color: var(--color-danger);
+    }
+
+    &.error .kg-signup-card-error {
+        display: block;
+        margin-block-start: var(--space-2);
+        color: var(--color-danger) !important;
+    }
+}
+
+/* Narrow slot: stack the button under the input. */
+@container (width < 26rem) {
+    .kg-signup-card-fields {
+        flex-direction: column;
+    }
+
+    /* flex: 1 would squash the input's height in a column. */
+    .kg-signup-card-input {
+        flex: none;
+    }
+}
+
+.kg-signup-card-form.success + .kg-signup-card-disclaimer {
+    visibility: hidden;
+}
