@@ -1,0 +1,7 @@
+{{!-- One series note, rendered inside a tag's context by series-note.hbs. --}}
+<aside class="gh-series-note" aria-label="Series">
+    <p class="gh-series-note-label">Part of a series</p>
+    <p class="gh-series-note-title"><a href="{{@site.url}}/series/{{slug}}/">{{name}}</a></p>
+    {{#if description}}<p class="gh-series-note-text">{{description}}</p>{{/if}}
+    <a class="gh-series-note-more" href="{{@site.url}}/series/{{slug}}/">All posts in this series</a>
+</aside>

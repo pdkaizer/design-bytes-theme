@@ -1,23 +1,33 @@
 {{!--
-End-of-post newsletter sign-up. Shown only when members are enabled and the
-reader isn't signed in. Ghost's members script handles the form: it sends a
-confirmation email and subscribes to the site's default newsletter(s).
-Loading, success and error states are styled in components/members.css.
+End-of-post newsletter sign-up, used by post.hbs and page.hbs. Shown only
+when members are enabled and the reader isn't signed in. Posts in a series
+get that series' wording (from the Design Bytes Growth Plan); everything
+else gets the standard panel. Series tags are matched by name, as set in
+Ghost admin; the list of series lives in routes.yaml and series-note.hbs.
+
+The AI and Design Systems wording offers the readiness checklist, so it only
+shows once the "Checklist signup" theme setting is switched on.
 --}}
 {{#if @site.members_enabled}}
 {{^if @member}}
-<section class="gh-cta" aria-labelledby="gh-cta-title">
-    <h2 class="gh-cta-title" id="gh-cta-title">Subscribe to {{@site.title}}</h2>
-    <p class="gh-cta-text">New Bytes and articles in your inbox. No spam, unsubscribe anytime.</p>
-    <form class="gh-cta-form" data-members-form="signup">
-        <input class="gh-input" type="email" data-members-email required placeholder="you@example.com" aria-label="Email address" autocomplete="email">
-        <button class="gh-button gh-button-primary" type="submit">
-            <span class="gh-button-content">Subscribe</span>
-            <span class="gh-button-loader" aria-hidden="true"></span>
-        </button>
-        <p class="message-success" role="status"><strong>Almost there.</strong> Check your inbox and click the link to confirm your subscription.</p>
-        <p class="message-error" role="alert">That didn't work. Check your email address and try again.</p>
-    </form>
-</section>
+    {{#has tag="Craft and AI, Craftsmanship"}}
+        {{> "newsletter-cta-panel"
+            heading="Craft is the work. Craftsmanship is the practice."
+            text="Join designers thinking about how we make things, and why it matters. New essays monthly, Bytes weekly."
+            button="Join Design Bytes"}}
+    {{else}}
+        {{#has tag="AI and Design Systems"}}
+            {{#if @custom.checklist_signup}}
+                {{> "newsletter-cta-panel"
+                    heading="Get the design system readiness checklist"
+                    text="Subscribe and I'll send you a free checklist for making your design system readable by people and machines."
+                    button="Send me the checklist"}}
+            {{else}}
+                {{> "newsletter-cta-panel"}}
+            {{/if}}
+        {{else}}
+            {{> "newsletter-cta-panel"}}
+        {{/has}}
+    {{/has}}
 {{/if}}
 {{/if}}

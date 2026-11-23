@@ -98,6 +98,11 @@
                 "default": "",
                 "description": "Plain text shown under the footer menu, such as a disclaimer."
             },
+            "checklist_signup": {
+                "type": "boolean",
+                "default": false,
+                "description": "Offer the readiness checklist in the sign-up on AI and Design Systems posts."
+            },
             "contact_form_endpoint": {
                 "type": "text",
                 "default": "https://formspree.io/f/mvkakbkz",
