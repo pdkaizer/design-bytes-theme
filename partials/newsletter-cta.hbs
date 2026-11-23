@@ -1,15 +1,22 @@
 {{!--
 End-of-post newsletter sign-up, used by post.hbs and page.hbs. Shown only
-when members are enabled and the reader isn't signed in. Posts in a series
-get that series' wording (from the Design Bytes Growth Plan); everything
-else gets the standard panel. Series tags are matched by name, as set in
-Ghost admin; the list of series lives in routes.yaml and series-note.hbs.
+when members are enabled and the reader isn't signed in. Resources get the
+Resources wording; posts in a series get that series' wording (from the
+Design Bytes Growth Plan); everything else gets the standard panel. Tags
+are matched by name, as set in Ghost admin; the list of series lives in
+routes.yaml and series-note.hbs.
 
 The AI and Design Systems wording offers the readiness checklist, so it only
 shows once the "Checklist signup" theme setting is switched on.
 --}}
 {{#if @site.members_enabled}}
 {{^if @member}}
+    {{#has tag="Resource"}}
+        {{> "newsletter-cta-panel"
+            heading="Get new Resources as they're released"
+            text="Free guides, courses and starter kits for designers working with modern code, plus a one-minute Byte every week."
+            button="Send me new Resources"}}
+    {{else}}
     {{#has tag="Craft and AI, Craftsmanship"}}
         {{> "newsletter-cta-panel"
             heading="Craft is the work. Craftsmanship is the practice."
@@ -28,6 +35,7 @@ shows once the "Checklist signup" theme setting is switched on.
         {{else}}
             {{> "newsletter-cta-panel"}}
         {{/has}}
+    {{/has}}
     {{/has}}
 {{/if}}
 {{/if}}
