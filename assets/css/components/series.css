@@ -1,0 +1,100 @@
+/* Series
+   The "Part of a series" note at the end of a post, the series index
+   (/series/) and the small "Series" label above a series hub's title.
+/* ---------------------------------------------------------- */
+
+/* Note at the end of a series post */
+.gh-series-note {
+    --series-accent: var(--color-accent);
+
+    display: grid;
+    gap: var(--space-2);
+    margin-block: var(--space-10) var(--space-8);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface);
+    border-inline-start: 3px solid var(--series-accent);
+    border-radius: var(--radius-control);
+}
+
+.gh-series-note-label,
+.gh-page-kicker {
+    color: var(--color-text-muted);
+    font-size: var(--step--2);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.gh-series-note-title {
+    font-family: var(--font-heading);
+    font-size: var(--step-1);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: var(--leading-snug);
+
+    & a {
+        text-decoration: none;
+    }
+}
+
+.gh-series-note-text {
+    color: var(--color-text-muted);
+    font-size: var(--step--1);
+}
+
+.gh-series-note-more {
+    justify-self: start;
+    font-size: var(--step--1);
+    font-weight: var(--weight-semibold);
+}
+
+/* Label above a series hub's title */
+.gh-page-kicker {
+    margin-block-end: var(--space-3);
+
+    & a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    & a:is(:hover, :focus-visible) {
+        color: var(--color-link);
+        transition: color var(--transition-base);
+    }
+}
+
+/* Series index */
+.gh-series-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+    gap: var(--space-6);
+    padding: 0;
+    list-style: none;
+}
+
+.gh-series-item {
+    display: grid;
+    align-content: start;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.gh-series-item-title {
+    font-size: var(--step-2);
+
+    & a {
+        text-decoration: none;
+    }
+}
+
+.gh-series-item-text {
+    color: var(--color-text-muted);
+}
+
+.gh-series-item-count {
+    color: var(--color-text-muted);
+    font-size: var(--step--1);
+}

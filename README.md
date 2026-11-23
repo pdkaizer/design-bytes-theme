@@ -76,6 +76,8 @@ partials/             site header, site footer, card, theme toggle, icons
 
 `/articles/` and `/bytes/` list every post tagged **Article** or **Byte**, using `articles.hbs` and `bytes.hbs`. They're defined in [routes.yaml](routes.yaml), and [redirects.yaml](redirects.yaml) sends the old `/recent-bytes/` page to `/bytes/`. Neither file is part of the theme zip. Upload both in Ghost admin under **Settings → Labs** (Routes and Redirects). Each section's intro text is its tag's description in Ghost admin.
 
+**Series.** `/series/` lists the three series, and each has a hub at `/series/<slug>/`: AI and Design Systems (`ai-and-design-systems`), Craft and AI (`craft-and-ai`) and Craftsmanship (`craftsmanship`). A series is a public tag in Ghost admin, and its description is the hub's intro. Posts with a series tag get a "Part of a series" note, and the craft series get their own sign-up wording. The AI and Design Systems wording offers the readiness checklist, so it waits for the **Checklist signup** theme setting. To add a series, add its tag to `routes.yaml`, `partials/series-note.hbs` and `series-index.hbs`.
+
 `/resources/` lists every post tagged **Resource**, using `resources.hbs`. It's a collection rather than a channel, so Resources stay out of the home feed and the untyped "Read next" list. Each type tag (Article, Byte, Resource) also gives its posts a pill linking to the section, and a "More …" list at the end of the post.
 
 ## Deployment

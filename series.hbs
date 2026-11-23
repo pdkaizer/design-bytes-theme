@@ -1,0 +1,34 @@
+{{!< default}}
+{{!--
+One series hub, such as /series/craftsmanship/. Each series is a channel in
+routes.yaml (filter tag:<slug>, data: tag.<slug>), which also redirects the
+tag's /tag/<slug>/ page here. The intro is the tag's description and image,
+set in Ghost admin.
+--}}
+
+<div class="gh-page">
+    <div class="gh-container">
+
+        {{#tag}}
+        <header class="gh-page-head">
+            <p class="gh-page-kicker"><a href="{{@site.url}}/series/">Series</a></p>
+            <h1>{{name}}</h1>
+            {{#if description}}<p>{{description}}</p>{{/if}}
+            {{#if feature_image}}
+                <img class="gh-page-image responsive-image" src="{{feature_image}}" alt="" />
+            {{/if}}
+        </header>
+        {{/tag}}
+
+        <div class="gh-postfeed">
+        {{#foreach posts}}
+            {{> "card" page=../pagination.page}}
+        {{/foreach}}
+        </div>
+
+        <noscript>
+            <div class="gh-pagination">{{pagination}}</div>
+        </noscript>
+
+    </div>
+</div>

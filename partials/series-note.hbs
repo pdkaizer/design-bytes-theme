@@ -1,0 +1,11 @@
+{{!--
+"Part of a series" note at the end of a post that carries a series tag.
+The series slugs here must match routes.yaml (/series/<slug>/) and
+series-index.hbs. Links go straight to /series/<slug>/ (the tag's own
+/tag/<slug>/ address redirects there).
+--}}
+{{#foreach tags}}
+    {{#match slug "=" "ai-and-design-systems"}}{{> "series-note-panel"}}{{/match}}
+    {{#match slug "=" "craft-and-ai"}}{{> "series-note-panel"}}{{/match}}
+    {{#match slug "=" "craftsmanship"}}{{> "series-note-panel"}}{{/match}}
+{{/foreach}}

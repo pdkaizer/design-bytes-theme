@@ -24,6 +24,27 @@ routes:
     template: bytes
     data: tag.byte
 
+  # Series. The list of series also lives in partials/series-note.hbs and
+  # series-index.hbs; keep all three in step. data: tag.x redirects each
+  # /tag/x/ page here.
+  /series/:
+    template: series-index
+  /series/ai-and-design-systems/:
+    controller: channel
+    filter: tag:ai-and-design-systems
+    template: series
+    data: tag.ai-and-design-systems
+  /series/craft-and-ai/:
+    controller: channel
+    filter: tag:craft-and-ai
+    template: series
+    data: tag.craft-and-ai
+  /series/craftsmanship/:
+    controller: channel
+    filter: tag:craftsmanship
+    template: series
+    data: tag.craftsmanship
+
 collections:
   /resources/:
     permalink: /{slug}/

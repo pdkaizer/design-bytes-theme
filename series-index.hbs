@@ -1,0 +1,29 @@
+{{!< default}}
+{{!--
+/series/: every series, routed by routes.yaml. The series are the tags listed
+in the filter below; keep it in step with routes.yaml and series-note.hbs.
+Each panel's intro is the tag's description, and it links to /series/<slug>/.
+--}}
+
+<div class="gh-page">
+    <div class="gh-container">
+
+        <header class="gh-page-head">
+            <h1>Series</h1>
+            <p>Longer threads of thinking, told across several articles.</p>
+        </header>
+
+        {{#get "tags" filter="slug:[ai-and-design-systems,craft-and-ai,craftsmanship]" include="count.posts" order="name asc" limit="10" as |series|}}
+            <ul class="gh-series-list" role="list">
+            {{#foreach series}}
+                <li class="gh-series-item">
+                    <h2 class="gh-series-item-title"><a href="{{@site.url}}/series/{{slug}}/">{{name}}</a></h2>
+                    {{#if description}}<p class="gh-series-item-text">{{description}}</p>{{/if}}
+                    <p class="gh-series-item-count">{{plural count.posts empty="No posts yet" singular="% post" plural="% posts"}}</p>
+                </li>
+            {{/foreach}}
+            </ul>
+        {{/get}}
+
+    </div>
+</div>
